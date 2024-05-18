@@ -9,6 +9,8 @@
     <div class="container">
         <h1 class="mt-4">Lista de Cast de Películas</h1>
         <a href="/cast_peliculas/create" class="btn btn-primary mb-4">Agregar Cast</a>
+        <a href="/cast_peliculas/show" class="btn btn-primary mb-4">Agregar Cast</a>
+        <a href="/cast_peliculas/edit" class="btn btn-primary mb-4">Agregar Cast</a>
         <table class="table">
             <thead>
                 <tr>

@@ -8,7 +8,7 @@
 <body>
     <div class="container">
         <h1 class="mt-4">Lista de Géneros</h1>
-        <a href="/generos/create" class="btn btn-primary mb-4">Agregar Género</a>
+        <a href="/cine/views/generos/create.php" class="btn btn-primary mb-4">Agregar Género</a>
         <table class="table">
             <thead>
                 <tr>

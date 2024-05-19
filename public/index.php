@@ -1,1 +1,0 @@
-require_once '/var/www/html/cine/router.php';

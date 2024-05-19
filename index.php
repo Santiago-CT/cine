@@ -1,8 +1,3 @@
-<?php
-// Incluye el archivo router.php para manejar las rutas
-#require_once '/var/www/html/cine/router.php';
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -26,7 +21,7 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Cine Reyes</a>
+        <a class="navbar-brand" href="/">Cine Colombia</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -39,26 +34,17 @@
                     <a class="nav-link" href="/reservaciones">Reservaciones</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/carteras">Cartera</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="/salas">Salas</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/generos">Géneros</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/historial_peliculas">Historial de Películas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/casts">Reparto</a>
                 </li>
             </ul>
         </div>
     </nav>
 
     <div class="jumbotron text-center">
-        <h1 class="display-4">Bienvenido a Cine Reyes Villavicencio</h1>
+        <h1 class="display-4">Bienvenido a Reyes Colombia Villavicencio</h1>
         <p class="lead">Gestión de películas, salas, reservaciones y más.</p>
         <a class="btn btn-primary btn-lg" href="/reservaciones/create" role="button">Hacer una Reservación</a>
     </div>
@@ -69,9 +55,10 @@
                 <div class="card mb-4 shadow-sm">
                     <div class="card-body">
                         <h5 class="card-title">Proyecciones</h5>
-                        <p class="card-text">Consulta y gestiona las proyecciones de las películas.</p>
+                        <p class="card-text">Consulta y gestiona las proyecciones de las películas, incluyendo el reparto.</p>
                         <a href="/proyecciones" class="btn btn-primary">Ver Proyecciones</a>
                         <a href="/proyecciones/create" class="btn btn-secondary">Agregar Proyección</a>
+                        <a href="/reparto" class="btn btn-info mt-2">Ver Reparto</a>
                     </div>
                 </div>
             </div>
@@ -82,16 +69,6 @@
                         <p class="card-text">Consulta y gestiona las reservaciones de entradas.</p>
                         <a href="/reservaciones" class="btn btn-primary">Ver Reservaciones</a>
                         <a href="/reservaciones/create" class="btn btn-secondary">Agregar Reservación</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title">Cartera</h5>
-                        <p class="card-text">Consulta y gestiona la cartera semanal de películas.</p>
-                        <a href="/carteras" class="btn btn-primary">Ver Cartera</a>
-                        <a href="/carteras/create" class="btn btn-secondary">Agregar Cartera</a>
                     </div>
                 </div>
             </div>
@@ -115,26 +92,6 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title">Historial de Películas</h5>
-                        <p class="card-text">Consulta y gestiona el historial de películas proyectadas.</p>
-                        <a href="/historial_peliculas" class="btn btn-primary">Ver Historial</a>
-                        <a href="/historial_peliculas/create" class="btn btn-secondary">Agregar Historial</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title">Reparto</h5>
-                        <p class="card-text">Consulta y gestiona la información del reparto de las películas.</p>
-                        <a href="/casts" class="btn btn-primary">Ver Reparto</a>
-                        <a href="/casts/create" class="btn btn-secondary">Agregar Reparto</a>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -143,3 +100,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
+<?php
+// Incluye el archivo router.php para manejar las rutas
+require_once '/var/www/html/cine/router.php';
+?>

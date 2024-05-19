@@ -1,4 +1,4 @@
-<!-- views/historial_peliculas/index.php -->
+
 <!DOCTYPE html>
 <html>
 <head>

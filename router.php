@@ -8,9 +8,11 @@ require_once 'controllers/GeneroController.php';
 require_once 'controllers/HistorialPeliculasController.php';
 require_once 'controllers/CastPeliculaController.php';
 
+// Obtener la ruta solicitada y el método HTTP
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $method = $_SERVER['REQUEST_METHOD'];
 
+// Definir las rutas disponibles y sus controladores
 $routes = [
     'GET' => [
         '/' => function() {
@@ -22,8 +24,8 @@ $routes = [
         },
         '/proyecciones/show' => function() {
             $controller = new ProyeccionController();
-            $id = $_GET['id'];
-            $controller->show($id);
+            $id = $_GET['id'] ?? null;
+            if ($id) $controller->show($id);
         },
         '/proyecciones/create' => function() {
             $controller = new ProyeccionController();
@@ -31,8 +33,8 @@ $routes = [
         },
         '/proyecciones/edit' => function() {
             $controller = new ProyeccionController();
-            $id = $_GET['id'];
-            $controller->edit($id);
+            $id = $_GET['id'] ?? null;
+            if ($id) $controller->edit($id);
         },
         '/reservaciones' => function() {
             $controller = new ReservacionController();
@@ -40,8 +42,8 @@ $routes = [
         },
         '/reservaciones/show' => function() {
             $controller = new ReservacionController();
-            $id = $_GET['id'];
-            $controller->show($id);
+            $id = $_GET['id'] ?? null;
+            if ($id) $controller->show($id);
         },
         '/reservaciones/create' => function() {
             $controller = new ReservacionController();
@@ -49,8 +51,8 @@ $routes = [
         },
         '/reservaciones/edit' => function() {
             $controller = new ReservacionController();
-            $id = $_GET['id'];
-            $controller->edit($id);
+            $id = $_GET['id'] ?? null;
+            if ($id) $controller->edit($id);
         },
         '/carteras' => function() {
             $controller = new CarteraController();
@@ -58,8 +60,8 @@ $routes = [
         },
         '/carteras/show' => function() {
             $controller = new CarteraController();
-            $id = $_GET['id'];
-            $controller->show($id);
+            $id = $_GET['id'] ?? null;
+            if ($id) $controller->show($id);
         },
         '/carteras/create' => function() {
             $controller = new CarteraController();
@@ -67,8 +69,8 @@ $routes = [
         },
         '/carteras/edit' => function() {
             $controller = new CarteraController();
-            $id = $_GET['id'];
-            $controller->edit($id);
+            $id = $_GET['id'] ?? null;
+            if ($id) $controller->edit($id);
         },
         '/salas' => function() {
             $controller = new SalaController();
@@ -76,8 +78,8 @@ $routes = [
         },
         '/salas/show' => function() {
             $controller = new SalaController();
-            $id = $_GET['id'];
-            $controller->show($id);
+            $id = $_GET['id'] ?? null;
+            if ($id) $controller->show($id);
         },
         '/salas/create' => function() {
             $controller = new SalaController();
@@ -85,8 +87,8 @@ $routes = [
         },
         '/salas/edit' => function() {
             $controller = new SalaController();
-            $id = $_GET['id'];
-            $controller->edit($id);
+            $id = $_GET['id'] ?? null;
+            if ($id) $controller->edit($id);
         },
         '/generos' => function() {
             $controller = new GeneroController();
@@ -94,8 +96,8 @@ $routes = [
         },
         '/generos/show' => function() {
             $controller = new GeneroController();
-            $id = $_GET['id'];
-            $controller->show($id);
+            $id = $_GET['id'] ?? null;
+            if ($id) $controller->show($id);
         },
         '/generos/create' => function() {
             $controller = new GeneroController();
@@ -103,26 +105,12 @@ $routes = [
         },
         '/generos/edit' => function() {
             $controller = new GeneroController();
-            $id = $_GET['id'];
-            $controller->edit($id);
+            $id = $_GET['id'] ?? null;
+            if ($id) $controller->edit($id);
         },
         '/historial_peliculas' => function() {
             $controller = new HistorialPeliculasController();
             $controller->index();
-        },
-        '/historial_peliculas/show' => function() {
-            $controller = new HistorialPeliculasController();
-            $id = $_GET['id'];
-            $controller->show($id);
-        },
-        '/historial_peliculas/create' => function() {
-            $controller = new HistorialPeliculasController();
-            $controller->create();
-        },
-        '/historial_peliculas/edit' => function() {
-            $controller = new HistorialPeliculasController();
-            $id = $_GET['id'];
-            $controller->edit($id);
         },
         '/casts' => function() {
             $controller = new CastPeliculaController();
@@ -130,8 +118,8 @@ $routes = [
         },
         '/casts/show' => function() {
             $controller = new CastPeliculaController();
-            $id = $_GET['id'];
-            $controller->show($id);
+            $id = $_GET['id'] ?? null;
+            if ($id) $controller->show($id);
         },
         '/casts/create' => function() {
             $controller = new CastPeliculaController();
@@ -139,8 +127,8 @@ $routes = [
         },
         '/casts/edit' => function() {
             $controller = new CastPeliculaController();
-            $id = $_GET['id'];
-            $controller->edit($id);
+            $id = $_GET['id'] ?? null;
+            if ($id) $controller->edit($id);
         }
     ],
     'POST' => [
@@ -214,20 +202,6 @@ $routes = [
             $id = $_POST['id'];
             $controller->delete($id);
         },
-        '/historial_peliculas/store' => function() {
-            $controller = new HistorialPeliculasController();
-            $controller->store();
-        },
-        '/historial_peliculas/update' => function() {
-            $controller = new HistorialPeliculasController();
-            $id = $_POST['id'];
-            $controller->update($id);
-        },
-        '/historial_peliculas/delete' => function() {
-            $controller = new HistorialPeliculasController();
-            $id = $_POST['id'];
-            $controller->delete($id);
-        },
         '/casts/store' => function() {
             $controller = new CastPeliculaController();
             $controller->store();
@@ -245,6 +219,7 @@ $routes = [
     ]
 ];
 
+// Verificar y ejecutar la ruta correspondiente
 if (array_key_exists($method, $routes) && array_key_exists($uri, $routes[$method])) {
     $routes[$method][$uri]();
 } else {

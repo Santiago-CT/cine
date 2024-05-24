@@ -1,3 +1,10 @@
+<?php
+require_once 'controllers/SalaController.php';
+
+    $controller = new SalaController();
+    $controller->index();
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -67,8 +74,8 @@
                     <div class="card-body">
                         <h5 class="card-title">Reservaciones</h5>
                         <p class="card-text">Consulta y gestiona las reservaciones de entradas.</p>
-                        <a href="/reservaciones" class="btn btn-primary">Ver Reservaciones</a>
-                        <a href="/reservaciones/create" class="btn btn-secondary">Agregar Reservación</a>
+                        <a href="./views/reservaciones/index.php" class="btn btn-primary">Ver Reservaciones</a>
+                        <a href="./views/reservaciones/create.php" class="btn btn-secondary">Agregar Reservación</a>
                     </div>
                 </div>
             </div>
@@ -77,8 +84,8 @@
                     <div class="card-body">
                         <h5 class="card-title">Salas</h5>
                         <p class="card-text">Consulta y gestiona la información de las salas.</p>
-                        <a href="/salas" class="btn btn-primary">Ver Salas</a>
-                        <a href="/salas/create" class="btn btn-secondary">Agregar Sala</a>
+                        <a href="./views/salas/" class="btn btn-primary">Ver Salas</a>
+                        <a href="./views/salas/create.php" class="btn btn-secondary">Agregar Sala</a>
                     </div>
                 </div>
             </div>
@@ -101,7 +108,4 @@
 </body>
 </html>
 
-<?php
-// Incluye el archivo router.php para manejar las rutas
-require_once '/var/www/html/cine/router.php';
-?>
+

@@ -31,7 +31,7 @@ class ReservacionController {
             'fecha_reserva' => $_POST['fecha_reserva']
         ];
         $this->model->create($data);
-        header('Location: /reservaciones');
+        header('Location: ./cine/views/reservaciones/index.php');
     }
 
     public function edit($id) {

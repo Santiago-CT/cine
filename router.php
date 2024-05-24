@@ -1,12 +1,12 @@
 <?php
 
-require_once 'controllers/ProyeccionController.php';
-require_once 'controllers/ReservacionController.php';
-require_once 'controllers/CarteraController.php';
-require_once 'controllers/SalaController.php';
-require_once 'controllers/GeneroController.php';
-require_once 'controllers/HistorialPeliculasController.php';
-require_once 'controllers/CastPeliculaController.php';
+require_once './controllers/ProyeccionController.php';
+require_once './controllers/ReservacionController.php';
+require_once './controllers/CarteraController.php';
+require_once './controllers/SalaController.php';
+require_once './controllers/GeneroController.php';
+require_once './controllers/HistorialPeliculasController.php';
+require_once './controllers/CastPeliculaController.php';
 
 // Obtener la ruta solicitada y el método HTTP
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);

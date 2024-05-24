@@ -1,4 +1,5 @@
 <?php
+// controllers/SalaController.php
 
 require_once 'models/Sala.php';
 

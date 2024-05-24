@@ -1,4 +1,5 @@
 <?php
+// models/Sala.php
 
 require_once 'config/config.php';
 

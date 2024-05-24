@@ -1,7 +1,7 @@
 <?php
 // controllers/SalaController.php
 
-require_once 'models/Sala.php';
+require_once '../models/Sala.php';
 
 class SalaController {
     private $model;
@@ -12,16 +12,16 @@ class SalaController {
 
     public function index() {
         $salas = $this->model->getAll();
-        include 'views/salas/index.php';
+        include '../views/salas/index.php';
     }
 
     public function show($id) {
         $sala = $this->model->getById($id);
-        include 'views/salas/show.php';
+        include '../views/salas/show.php';
     }
 
     public function create() {
-        include 'views/salas/create.php';
+        include '../views/salas/create.php';
     }
 
     public function store() {
@@ -35,7 +35,7 @@ class SalaController {
 
     public function edit($id) {
         $sala = $this->model->getById($id);
-        include 'views/salas/edit.php';
+        include '../views/salas/edit.php';
     }
 
     public function update($id) {

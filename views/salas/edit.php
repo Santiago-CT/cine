@@ -1,5 +1,6 @@
+<?php require_once 'config.php'; ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,17 +10,16 @@
 <body>
     <div class="container">
         <h1 class="my-4">Editar Sala</h1>
-        <form action="/salas/update" method="POST">
-            <input type="hidden" name="id" value="<?= $sala['id'] ?>">
+        <form action="/salas/update/<?php echo $sala['id']; ?>" method="POST">
             <div class="form-group">
                 <label for="nombre">Nombre</label>
-                <input type="text" name="nombre" id="nombre" class="form-control" value="<?= htmlspecialchars($sala['nombre']) ?>" required>
+                <input type="text" name="nombre" id="nombre" class="form-control" value="<?php echo $sala['nombre']; ?>" required>
             </div>
             <div class="form-group">
                 <label for="capacidad">Capacidad</label>
-                <input type="number" name="capacidad" id="capacidad" class="form-control" value="<?= htmlspecialchars($sala['capacidad']) ?>" required>
+                <input type="number" name="capacidad" id="capacidad" class="form-control" value="<?php echo $sala['capacidad']; ?>" required>
             </div>
-            <button type="submit" class="btn btn-primary">Actualizar</button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
             <a href="/salas" class="btn btn-secondary">Cancelar</a>
         </form>
     </div>

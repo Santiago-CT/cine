@@ -1,7 +1,7 @@
 <?php
 // models/Sala.php
 
-require_once 'config/config.php';
+require_once 'config.php';
 
 class Sala {
     private $pdo;

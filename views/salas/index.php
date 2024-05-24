@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <h1 class="my-4">Lista de Salas</h1>
-        <a href="/salas/create" class="btn btn-primary mb-3">Crear Nueva Sala</a>
+        <a href="./create.php" class="btn btn-primary mb-3">Crear Nueva Sala</a>
         <table class="table">
             <thead>
                 <tr>

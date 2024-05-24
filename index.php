@@ -1,47 +1,8 @@
 <?php
-// public/index.php
+#require_once 'controllers/SalaController.php';
 
-$request = $_SERVER['REQUEST_URI'];
 
-// Rutas para las entidades Sala y Pelicula
-switch ($request) {
-    case '/salas':
-        require __DIR__ . '../controllers/SalaController.php';
-        $controller = new SalaController();
-        $controller->index();
-        break;
-    case '/salas/create':
-        require __DIR__ . '../controllers/SalaController.php';
-        $controller = new SalaController();
-        $controller->create();
-        break;
-    case '/salas/store':
-        require __DIR__ . '/../controllers/SalaController.php';
-        $controller = new SalaController();
-        $controller->store();
-        break;
-    case '/salas/edit':
-        require __DIR__ . '/../controllers/SalaController.php';
-        $controller = new SalaController();
-        $controller->edit( $id);
-        break;
-    case '/salas/update':
-        require __DIR__ . '/../controllers/SalaController.php';
-        $controller = new SalaController();
-        $controller->update($id);
-        break;
-    case '/salas/delete':
-        require __DIR__ . '../controllers/SalaController.php    ';
-        $controller = new SalaController();
-        $controller->delete($id);
-        break;
-    default:
-        http_response_code(404);
-        echo "404 Not Found";
-        break;
-}
 ?>
-
 
 <!DOCTYPE html>
 <html lang="es">

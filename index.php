@@ -1,6 +1,11 @@
 <?php
-#require_once 'controllers/SalaController.php';
+require_once './controllers/PersonaController.php';
+require_once './controllers/CarteraController.php';
 
+    $controller = new CarteraController();
+    $controller->index();
+
+//require_once 'session.php';
 
 ?>
 

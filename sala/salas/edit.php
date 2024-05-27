@@ -8,6 +8,9 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+    <?php
+                include_once('/var/www/html/cine/componentes/menu-bar.php')
+    ?>
     <div class="container">
         <h1 class="my-4">Editar Sala</h1>
         <form action="./update.php?php echo $sala['id']; ?>" method="POST">

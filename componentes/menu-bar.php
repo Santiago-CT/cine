@@ -13,7 +13,7 @@
 <style>
     <?php include('../estilos/index.css'); ?>
 </style>
-<div class="slide-bar bg-dark">    
+<nav class="slide-bar bg-dark">    
             <a href="index.php">Cine Colombia</a>                
             <a href="./views/proyecciones/index.php">Proyecciones</a>
             <a href="./views/reservaciones/index.php">Reservaciones</a>
@@ -27,4 +27,4 @@
                 echo '<a href="../cine/login.php"> Iniciar sesión</a>';
             }
             ?>
-</div>
+</nav>

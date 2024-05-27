@@ -1,8 +1,8 @@
 <?php
 
-require_once __DIR__ . '/../config/config.php';
+require_once 'config/config.php';
 
-class Sala extends ConexionBD {
+class HistorialPelicula extends ConexionBD {
     private $pdo;
 
     public function __construct() {
@@ -12,7 +12,7 @@ class Sala extends ConexionBD {
 
     public function getAll() {
         try {
-            $sql = 'SELECT * FROM salas';
+            $sql = 'SELECT * FROM historial_peliculas';
             $stmt = ConexionBD::getConnection()->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetchAll();
@@ -24,7 +24,7 @@ class Sala extends ConexionBD {
 
     public function getById($id) {
         try {
-            $sql = 'SELECT * FROM salas WHERE id = :id';
+            $sql = 'SELECT * FROM historial_peliculas WHERE id = :id';
             $stmt = ConexionBD::getConnection()->prepare($sql);
             $stmt->bindParam(':id', $id);
             $stmt->execute();
@@ -35,12 +35,12 @@ class Sala extends ConexionBD {
         }
     }
 
-    public function create($nombre,$capacidad) {
+    public function create($data) {
         try {
-            $sql = 'INSERT INTO salas (nombre, capacidad) VALUES (:nombre, :capacidad)';
+            $sql = 'INSERT INTO historial_peliculas (pelicula_id, fecha_visualizacion) VALUES (:pelicula_id, :fecha_visualizacion)';
             $stmt = ConexionBD::getConnection()->prepare($sql);
-            $stmt->bindParam(':nombre', $nombre);
-            $stmt->bindParam(':capacidad', $capacidad);
+            $stmt->bindParam(':pelicula_id', $data['pelicula_id']);
+            $stmt->bindParam(':fecha_visualizacion', $data['fecha_visualizacion']);
             $stmt->execute();
             return true;
         } catch (PDOException $th) {
@@ -48,12 +48,12 @@ class Sala extends ConexionBD {
         }
     }
 
-    public function update($id, $nombre,$capacidad) {
+    public function update($id, $data) {
         try {
-            $sql = 'UPDATE salas SET nombre = :nombre, capacidad = :capacidad WHERE id = :id';
+            $sql = 'UPDATE historial_peliculas SET pelicula_id = :pelicula_id, fecha_visualizacion = :fecha_visualizacion WHERE id = :id';
             $stmt = ConexionBD::getConnection()->prepare($sql);
-            $stmt->bindParam(':nombre', $nombre);
-            $stmt->bindParam(':capacidad', $capacidad);
+            $stmt->bindParam(':pelicula_id', $data['pelicula_id']);
+            $stmt->bindParam(':fecha_visualizacion', $data['fecha_visualizacion']);
             $stmt->bindParam(':id', $id);
             $stmt->execute();
             return true;
@@ -64,7 +64,7 @@ class Sala extends ConexionBD {
 
     public function delete($id) {
         try {
-            $sql = 'DELETE FROM salas WHERE id = :id';
+            $sql = 'DELETE FROM historial_peliculas WHERE id = :id';
             $stmt = ConexionBD::getConnection()->prepare($sql);
             $stmt->bindParam(':id', $id);
             $stmt->execute();

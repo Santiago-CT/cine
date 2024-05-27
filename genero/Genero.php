@@ -1,8 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../config/config.php';
-
-class Sala extends ConexionBD {
+class Genero extends ConexionBD {
     private $pdo;
 
     public function __construct() {
@@ -12,7 +11,7 @@ class Sala extends ConexionBD {
 
     public function getAll() {
         try {
-            $sql = 'SELECT * FROM salas';
+            $sql = 'SELECT * FROM generos';
             $stmt = ConexionBD::getConnection()->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetchAll();
@@ -24,7 +23,7 @@ class Sala extends ConexionBD {
 
     public function getById($id) {
         try {
-            $sql = 'SELECT * FROM salas WHERE id = :id';
+            $sql = 'SELECT * FROM generos WHERE id = :id';
             $stmt = ConexionBD::getConnection()->prepare($sql);
             $stmt->bindParam(':id', $id);
             $stmt->execute();
@@ -35,12 +34,11 @@ class Sala extends ConexionBD {
         }
     }
 
-    public function create($nombre,$capacidad) {
+    public function create($data) {
         try {
-            $sql = 'INSERT INTO salas (nombre, capacidad) VALUES (:nombre, :capacidad)';
+            $sql = 'INSERT INTO generos (nombre) VALUES (:nombre)';
             $stmt = ConexionBD::getConnection()->prepare($sql);
-            $stmt->bindParam(':nombre', $nombre);
-            $stmt->bindParam(':capacidad', $capacidad);
+            $stmt->bindParam(':nombre', $data['nombre']);
             $stmt->execute();
             return true;
         } catch (PDOException $th) {
@@ -48,12 +46,11 @@ class Sala extends ConexionBD {
         }
     }
 
-    public function update($id, $nombre,$capacidad) {
+    public function update($id, $data) {
         try {
-            $sql = 'UPDATE salas SET nombre = :nombre, capacidad = :capacidad WHERE id = :id';
+            $sql = 'UPDATE generos SET nombre = :nombre WHERE id = :id';
             $stmt = ConexionBD::getConnection()->prepare($sql);
-            $stmt->bindParam(':nombre', $nombre);
-            $stmt->bindParam(':capacidad', $capacidad);
+            $stmt->bindParam(':nombre', $data['nombre']);
             $stmt->bindParam(':id', $id);
             $stmt->execute();
             return true;
@@ -64,7 +61,7 @@ class Sala extends ConexionBD {
 
     public function delete($id) {
         try {
-            $sql = 'DELETE FROM salas WHERE id = :id';
+            $sql = 'DELETE FROM generos WHERE id = :id';
             $stmt = ConexionBD::getConnection()->prepare($sql);
             $stmt->bindParam(':id', $id);
             $stmt->execute();

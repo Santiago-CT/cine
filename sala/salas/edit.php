@@ -6,23 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Sala</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/var/www/html/cine/estilos/salas.css" rel="stylesheet">
+    <style><?php  include('/var/www/html/cine/estilos/salas.css')  ?></style>
 </head>
 <body>
-    <div class="container">
-        <h1 class="my-4">Editar Sala</h1>
-        <form action="/salas/update/<?php echo $sala['id']; ?>" method="POST">
+    <section class="main-container">        
+        <div class="mural container text-white">
+            <h1 class="my-4">Editar Sala</h1>
+        <form action="./update.php?php echo $sala['id']; ?>" method="POST">
             <div class="form-group">
                 <label for="nombre">Nombre</label>
-                <input type="text" name="nombre" id="nombre" class="form-control" value="<?php echo $sala['nombre']; ?>" required>
+                <input type="text" name="nombre"  class="form-control" value="<?php echo $sala['nombre']; ?>" required>
             </div>
             <div class="form-group">
                 <label for="capacidad">Capacidad</label>
-                <input type="number" name="capacidad" id="capacidad" class="form-control" value="<?php echo $sala['capacidad']; ?>" required>
+                <input type="number" name="capacidad" class="form-control" value="<?php echo $sala['capacidad']; ?>" required>
             </div>
             <button type="submit" class="btn btn-primary">Guardar</button>
             <a href="/salas" class="btn btn-secondary">Cancelar</a>
         </form>
     </div>
+    </section>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

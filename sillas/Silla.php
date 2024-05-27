@@ -1,8 +1,8 @@
 <?php
 
-require_once __DIR__ . '/../config/config.php';
+require_once 'config/config.php';
 
-class Sala extends ConexionBD {
+class Silla extends ConexionBD {
     private $pdo;
 
     public function __construct() {
@@ -12,7 +12,7 @@ class Sala extends ConexionBD {
 
     public function getAll() {
         try {
-            $sql = 'SELECT * FROM salas';
+            $sql = 'SELECT * FROM sillas';
             $stmt = ConexionBD::getConnection()->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetchAll();
@@ -24,7 +24,7 @@ class Sala extends ConexionBD {
 
     public function getById($id) {
         try {
-            $sql = 'SELECT * FROM salas WHERE id = :id';
+            $sql = 'SELECT * FROM sillas WHERE id = :id';
             $stmt = ConexionBD::getConnection()->prepare($sql);
             $stmt->bindParam(':id', $id);
             $stmt->execute();
@@ -35,12 +35,13 @@ class Sala extends ConexionBD {
         }
     }
 
-    public function create($nombre,$capacidad) {
+    public function create($data) {
         try {
-            $sql = 'INSERT INTO salas (nombre, capacidad) VALUES (:nombre, :capacidad)';
+            $sql = 'INSERT INTO sillas (fila, numero, sala_id) VALUES (:fila, :numero, :sala_id)';
             $stmt = ConexionBD::getConnection()->prepare($sql);
-            $stmt->bindParam(':nombre', $nombre);
-            $stmt->bindParam(':capacidad', $capacidad);
+            $stmt->bindParam(':fila', $data['fila']);
+            $stmt->bindParam(':numero', $data['numero']);
+            $stmt->bindParam(':sala_id', $data['sala_id']);
             $stmt->execute();
             return true;
         } catch (PDOException $th) {
@@ -48,12 +49,13 @@ class Sala extends ConexionBD {
         }
     }
 
-    public function update($id, $nombre,$capacidad) {
+    public function update($id, $data) {
         try {
-            $sql = 'UPDATE salas SET nombre = :nombre, capacidad = :capacidad WHERE id = :id';
+            $sql = 'UPDATE sillas SET fila = :fila, numero = :numero, sala_id = :sala_id WHERE id = :id';
             $stmt = ConexionBD::getConnection()->prepare($sql);
-            $stmt->bindParam(':nombre', $nombre);
-            $stmt->bindParam(':capacidad', $capacidad);
+            $stmt->bindParam(':fila', $data['fila']);
+            $stmt->bindParam(':numero', $data['numero']);
+            $stmt->bindParam(':sala_id', $data['sala_id']);
             $stmt->bindParam(':id', $id);
             $stmt->execute();
             return true;
@@ -64,7 +66,7 @@ class Sala extends ConexionBD {
 
     public function delete($id) {
         try {
-            $sql = 'DELETE FROM salas WHERE id = :id';
+            $sql = 'DELETE FROM sillas WHERE id = :id';
             $stmt = ConexionBD::getConnection()->prepare($sql);
             $stmt->bindParam(':id', $id);
             $stmt->execute();

@@ -20,11 +20,11 @@ require_once './config/conexion.php';
     </head>
     <body>
         <section class="container-main">
-            <?php require_once './componentes/navBar.php'; 
+            <?php 
                 require_once ('./componentes/menu-bar.php');
             ?>
             
-            <div class="jumbotron text-center">
+            <div class=" text-center bg text-white p-4">
                 <h1 class="display-4">Bienvenido a Reyes Colombia Villavicencio</h1>
                 <p class="lead">Gestión de películas, salas, reservaciones y más.</p>
                 <a class="btn btn-primary btn-lg" href="/reservaciones/create" role="button">Hacer una Reservación</a>

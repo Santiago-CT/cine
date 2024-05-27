@@ -1,3 +1,25 @@
+<?php
+require_once '../Genero.php';
+
+echo '<pre>';
+var_dump($_SERVER);
+echo '</pre>';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['id'])) {
+        $id = $_POST['id'];
+        
+        $obtener = new Genero();
+        $obtener->getById($id);
+        header('Location: ../views/index.php');
+        exit();
+    } else {
+        echo "Por favor, complete todos los campos.";
+    }
+} else {
+    echo "Método de solicitud no permitido.";
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +35,7 @@
                 <p class="card-text">Nombre: <?php echo $genero['nombre']; ?></p>
             </div>
         </div>
-        <a href="/generos" class="btn btn-secondary mt-3">Volver</a>
+        <a href="./index.php" class="btn btn-secondary mt-3">Volver</a>
     </div>
 </body>
 </html>

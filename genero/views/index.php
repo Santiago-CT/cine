@@ -1,4 +1,8 @@
-
+<?php
+require_once '../Genero.php';
+$genero = new Genero;
+$generos = $genero->getAll();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,9 +27,16 @@
                     <td><?php echo $genero['id']; ?></td>
                     <td><?php echo $genero['nombre']; ?></td>
                     <td>
-                        <a href="/generos/show/<?php echo $genero['id']; ?>" class="btn btn-info btn-sm">Ver</a>
-                        <a href="/generos/edit/<?php echo $genero['id']; ?>" class="btn btn-warning btn-sm">Editar</a>
-                        <a href="/generos/delete/<?php echo $genero['id']; ?>" class="btn btn-danger btn-sm">Eliminar</a>
+                        <a href="./show.php?php echo $genero['id']; ?>" class="btn btn-info btn-sm">Ver</a>
+                        <form action="../views/show.php" method="POST" style="display:inline;">
+                            <input type="hidden" name="id" value="<?= $genero['id'] ?>">
+                            <button type="submit" class="btn btn-info">Ver</button>
+                        </form>
+                        <a href="./edit.php?php echo $genero['id']; ?>" class="btn btn-warning btn-sm">Editar</a>
+                        <form action="../controller /delete.php" method="POST" style="display:inline;">
+                            <input type="hidden" name="id" value="<?= $genero['id'] ?>">
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
                     </td>
                 </tr>
                 <?php endforeach; ?>

@@ -1,5 +1,5 @@
 <?php
-require_once '../Sala.php';
+require_once '../Genero.php';
 
 echo '<pre>';
 var_dump($_SERVER);
@@ -9,9 +9,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['id'])) {
         $id = $_POST['id'];
         
-        $eliminar = new Sala();
+        $eliminar = new Genero();
         $eliminar->delete($id);
-        header('Location: ../salas/index.php');
+        header('Location: ../views/index.php');
         exit();
     } else {
         echo "Por favor, complete todos los campos.";

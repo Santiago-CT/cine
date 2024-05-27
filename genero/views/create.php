@@ -7,7 +7,7 @@
 <body>
     <div class="container">
         <h1 class="mt-4">Agregar Género</h1>
-        <form action="/generos/store" method="POST">
+        <form action="../controller /update.php" method="POST">
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
                 <input type="text" name="nombre" class="form-control" required>

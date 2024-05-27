@@ -1,10 +1,6 @@
 <?php
 require_once '../Sala.php';
-
-// Crear una instancia de la clase Sala
 $sala = new Sala();
-
-// Obtener todas las salas
 $salas = $sala->getAll();
 ?>
 <!DOCTYPE html>
@@ -30,6 +26,7 @@ $salas = $sala->getAll();
             </thead>
             <tbody>
                 <?php foreach ($salas as $sala): ?>
+                    
                 <tr>
                     <td><?= $sala['id'] ?></td>
                     <td><?= $sala['nombre'] ?></td>
@@ -37,7 +34,7 @@ $salas = $sala->getAll();
                     <td>
                         <a href="./show.php?= $sala['id'] ?>" class="btn btn-info">Ver</a>
                         <a href="./edit.php?= $sala['id'] ?>" class="btn btn-warning">Editar</a>
-                        <form action="/salas/delete" method="POST" style="display:inline;">
+                        <form action="./delete.php" method="POST" style="display:inline;">
                             <input type="hidden" name="id" value="<?= $sala['id'] ?>">
                             <button type="submit" class="btn btn-danger">Eliminar</button>
                         </form>

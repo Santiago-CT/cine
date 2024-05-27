@@ -24,7 +24,7 @@
             ?>        
             <a href="./views/proyecciones/index.php">Proyecciones</a>
             <a href="./views/reservaciones/index.php">Reservaciones</a>
-            <a href="./views/salas/index.php">Salas</a>
+            <a href="../sala/salas/index.php">Salas</a>
             <a href="./views/generos/index.php">Géneros</a>
             <?php
             // Mostrar el estado de la sesión

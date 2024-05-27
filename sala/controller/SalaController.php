@@ -1,7 +1,6 @@
 <?php
-// controllers/SalaController.php
 
-require_once '../models/Sala.php';
+require '/var/www/html/cine/sala/Sala.php';
 
 class SalaController {
     private $model;
@@ -12,16 +11,16 @@ class SalaController {
 
     public function index() {
         $salas = $this->model->getAll();
-        include '../views/salas/index.php';
+        include './sala/salas/index.php';
     }
 
     public function show($id) {
         $sala = $this->model->getById($id);
-        include '../views/salas/show.php';
+        include './sala/salas/show.php';
     }
 
     public function create() {
-        include '../views/salas/create.php';
+        include './sala/salas/create.php';
     }
 
     public function store() {
@@ -30,12 +29,12 @@ class SalaController {
             'capacidad' => $_POST['capacidad']
         ];
         $this->model->create($data);
-        header('Location: /salas');
+        header('Location: ../index.php');
     }
 
     public function edit($id) {
         $sala = $this->model->getById($id);
-        include '../views/salas/edit.php';
+        include './sala/salas/edit.php';
     }
 
     public function update($id) {
@@ -44,12 +43,12 @@ class SalaController {
             'capacidad' => $_POST['capacidad']
         ];
         $this->model->update($id, $data);
-        header('Location: /salas');
+        header('Location: ./sala/Sala.php');
     }
 
     public function delete($id) {
         $this->model->delete($id);
-        header('Location: /salas');
+        header('Location: ./sala/Sala.php');
     }
 }
 ?>

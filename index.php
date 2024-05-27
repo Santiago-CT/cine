@@ -1,6 +1,9 @@
 <?php
-#require_once 'controllers/SalaController.php';
-
+require_once './controllers/PersonaController.php';
+require_once './controllers/CarteraController.php';
+require_once './config/conexion.php';
+    
+//require_once 'session.php';
 
 ?>
 

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,7 +10,7 @@
 <body>
     <div class="container">
         <h1 class="my-4">Crear Nueva Sala</h1>
-        <form action="/salas/store" method="POST">
+        <form action="../controller/store.php" method="POST">
             <div class="form-group">
                 <label for="nombre">Nombre</label>
                 <input type="text" name="nombre" id="nombre" class="form-control" required>
@@ -19,7 +20,7 @@
                 <input type="number" name="capacidad" id="capacidad" class="form-control" required>
             </div>
             <button type="submit" class="btn btn-primary">Crear</button>
-            <a href="/salas" class="btn btn-secondary">Cancelar</a>
+            <a href="./index.php" class="btn btn-secondary">Cancelar</a>
         </form>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

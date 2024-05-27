@@ -86,7 +86,7 @@ require_once './config/conexion.php';
                     <div class="card-body">
                         <h5 class="card-title">Salas</h5>
                         <p class="card-text">Consulta y gestiona la información de las salas.</p>
-                        <a href="./views/salas/" class="btn btn-primary">Ver Salas</a>
+                        <a href="./sala/salas/index.php" class="btn btn-primary">Ver Salas</a>
                         <a href="./views/salas/create.php" class="btn btn-secondary">Agregar Sala</a>
                     </div>
                 </div>

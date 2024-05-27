@@ -56,18 +56,15 @@ class Persona extends ConexionBD {
     }
 
     public function update($id, $data) {
-        $data['id'] = $id;
-        $stmt = $this->pdo->prepare('UPDATE personas SET nombre = :nombre, edad = :edad, correo = :correo WHERE id = :id');
-        return $stmt->execute($data);
         try{
-            $sql ='INSERT INTO personas (nombre,email,password,rol_id) VALUES (:nombre,:email,:password,:rol_id)';
+            $sql = 'UPDATE personas SET nombre = :nombre, email = :email, password = :password,:rol_id =:rol_id WHERE id = :id';
             $stmt = ConexionBD::getConnection()->prepare($sql);
             $stmt->bindParam(':nombre',$data['nombre']);
             $stmt->bindParam(':email',$data['email']);
             $stmt->bindParam(':password',$data['password']);
             $stmt->bindParam(':rol_id',$data['rol_id']);
+            $stmt->bindParam(':id',$data['id']);
             $stmt->execute();
-            
             return true;
     
         }catch(PDOException $th){
@@ -76,8 +73,17 @@ class Persona extends ConexionBD {
     }
 
     public function delete($id) {
-        $stmt = $this->pdo->prepare('DELETE FROM personas WHERE id = :id');
-        return $stmt->execute(['id' => $id]);
+        try{
+            $sql ='DELETE * FROM personas WHERE id = :id';
+            $stmt = ConexionBD::getConnection()->prepare($sql);
+            $stmt->bindParam(':id',$id);
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+            return $result;
+    
+        }catch(PDOException $th){
+            echo $th->getMessage();
+        }
     }
 }
 ?>

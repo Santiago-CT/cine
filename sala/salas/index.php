@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <h1 class="my-4">Salas</h1>
-        <a href="/salas/create" class="btn btn-primary mb-3">Crear Sala</a>
+        <a href="./create.php" class="btn btn-primary mb-3">Crear Sala</a>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -26,8 +26,8 @@
                     <td><?= $sala['nombre'] ?></td>
                     <td><?= $sala['capacidad'] ?></td>
                     <td>
-                        <a href="/salas/show?id=<?= $sala['id'] ?>" class="btn btn-info">Ver</a>
-                        <a href="/salas/edit?id=<?= $sala['id'] ?>" class="btn btn-warning">Editar</a>
+                        <a href="./show.php?= $sala['id'] ?>" class="btn btn-info">Ver</a>
+                        <a href="./edit.php?= $sala['id'] ?>" class="btn btn-warning">Editar</a>
                         <form action="/salas/delete" method="POST" style="display:inline;">
                             <input type="hidden" name="id" value="<?= $sala['id'] ?>">
                             <button type="submit" class="btn btn-danger">Eliminar</button>

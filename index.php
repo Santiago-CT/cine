@@ -48,8 +48,8 @@ require_once './config/conexion.php';
                             <div class="card-body">
                                 <h5 class="card-title">Reservaciones</h5>
                                 <p class="card-text">Consulta y gestiona las reservaciones de entradas.</p>
-                                <a href="./views/reservaciones/index.php" class="btn btn-primary">Ver Reservaciones</a>
-                                <a href="./views/reservaciones/create.php" class="btn btn-secondary">Agregar Reservación</a>
+                                <a href="./reservaciones/views/index.php" class="btn btn-primary">Ver Reservaciones</a>
+                                <a href="./reservaciones/views/create.php" class="btn btn-secondary">Agregar Reservación</a>
                             </div>
                         </div>
                     </div>

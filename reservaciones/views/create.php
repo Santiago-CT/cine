@@ -8,7 +8,7 @@
 <body>
     <div class="container">
         <h1 class="mt-4">Agregar Reservación</h1>
-        <form action="/reservaciones/store" method="POST">
+        <form action="../controladores/store.php" method="POST">
             <div class="form-group">
                 <label for="persona_id">Persona ID:</label>
                 <input type="number" name="persona_id" class="form-control" required>

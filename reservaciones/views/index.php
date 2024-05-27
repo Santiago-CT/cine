@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +14,7 @@
 <body>
     <div class="container">
         <h1 class="mt-4">Lista de Reservaciones</h1>
-        <a href="/reservaciones/create" class="btn btn-primary mb-4">Agregar Reservación</a>
+        <a href="./create.php" class="btn btn-primary mb-4">Agregar Reservación</a>
         <div class="row">
             <?php foreach ($reservaciones as $reservacion): ?>
                 <div class="col-md-4">

@@ -2,7 +2,7 @@
 
 require_once 'config/config.php';
 
-class Reservacion extends ConexionBD {
+class CastPelicula extends ConexionBD {
     private $pdo;
 
     public function __construct() {
@@ -12,7 +12,7 @@ class Reservacion extends ConexionBD {
 
     public function getAll() {
         try {
-            $sql = 'SELECT * FROM reservaciones';
+            $sql = 'SELECT * FROM cast_peliculas';
             $stmt = ConexionBD::getConnection()->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetchAll();
@@ -24,7 +24,7 @@ class Reservacion extends ConexionBD {
 
     public function getById($id) {
         try {
-            $sql = 'SELECT * FROM reservaciones WHERE id = :id';
+            $sql = 'SELECT * FROM cast_peliculas WHERE id = :id';
             $stmt = ConexionBD::getConnection()->prepare($sql);
             $stmt->bindParam(':id', $id);
             $stmt->execute();
@@ -37,14 +37,10 @@ class Reservacion extends ConexionBD {
 
     public function create($data) {
         try {
-            $sql = 'INSERT INTO reservaciones (persona_id, sala_id, silla_id, proyeccion_id, fecha_reservacion, estado) VALUES (:persona_id, :sala_id, :silla_id, :proyeccion_id, :fecha_reservacion, :estado)';
+            $sql = 'INSERT INTO cast_peliculas (pelicula_id, actor_id) VALUES (:pelicula_id, :actor_id)';
             $stmt = ConexionBD::getConnection()->prepare($sql);
-            $stmt->bindParam(':persona_id', $data['persona_id']);
-            $stmt->bindParam(':sala_id', $data['sala_id']);
-            $stmt->bindParam(':silla_id', $data['silla_id']);
-            $stmt->bindParam(':proyeccion_id', $data['proyeccion_id']);
-            $stmt->bindParam(':fecha_reservacion', $data['fecha_reservacion']);
-            $stmt->bindParam(':estado', $data['estado']);
+            $stmt->bindParam(':pelicula_id', $data['pelicula_id']);
+            $stmt->bindParam(':actor_id', $data['actor_id']);
             $stmt->execute();
             return true;
         } catch (PDOException $th) {
@@ -54,14 +50,10 @@ class Reservacion extends ConexionBD {
 
     public function update($id, $data) {
         try {
-            $sql = 'UPDATE reservaciones SET persona_id = :persona_id, sala_id = :sala_id, silla_id = :silla_id, proyeccion_id = :proyeccion_id, fecha_reservacion = :fecha_reservacion, estado = :estado WHERE id = :id';
+            $sql = 'UPDATE cast_peliculas SET pelicula_id = :pelicula_id, actor_id = :actor_id WHERE id = :id';
             $stmt = ConexionBD::getConnection()->prepare($sql);
-            $stmt->bindParam(':persona_id', $data['persona_id']);
-            $stmt->bindParam(':sala_id', $data['sala_id']);
-            $stmt->bindParam(':silla_id', $data['silla_id']);
-            $stmt->bindParam(':proyeccion_id', $data['proyeccion_id']);
-            $stmt->bindParam(':fecha_reservacion', $data['fecha_reservacion']);
-            $stmt->bindParam(':estado', $data['estado']);
+            $stmt->bindParam(':pelicula_id', $data['pelicula_id']);
+            $stmt->bindParam(':actor_id', $data['actor_id']);
             $stmt->bindParam(':id', $id);
             $stmt->execute();
             return true;
@@ -72,7 +64,7 @@ class Reservacion extends ConexionBD {
 
     public function delete($id) {
         try {
-            $sql = 'DELETE FROM reservaciones WHERE id = :id';
+            $sql = 'DELETE FROM cast_peliculas WHERE id = :id';
             $stmt = ConexionBD::getConnection()->prepare($sql);
             $stmt->bindParam(':id', $id);
             $stmt->execute();

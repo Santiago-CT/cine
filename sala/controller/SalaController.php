@@ -1,6 +1,6 @@
 <?php
 
-require '/var/www/html/cine/sala/Sala.php';
+//require '/var/www/html/cine/sala/Sala.php';
 
 class SalaController {
     private $model;
@@ -24,11 +24,10 @@ class SalaController {
     }
 
     public function store() {
-        $data = [
-            'nombre' => $_POST['nombre'],
-            'capacidad' => $_POST['capacidad']
-        ];
-        $this->model->create($data);
+        $nombre = $_POST['nombre'];
+        $capacidad = $_POST['capacidad'];
+       
+        $this->model->create($nombre,$capacidad);
         header('Location: ../index.php');
     }
 

@@ -1,21 +1,3 @@
-<?php
-
-require_once 'config/config.php';
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nombre = $_POST['nombre'];
-    $email = $_POST['email'];
-    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-    $rol_id = $_POST['rol_id'];
-
-    
-    $query = 'INSERT INTO personas (nombre, email, password, rol_id) VALUES (?, ?, ?, ?)';
-    $stmt = $db->prepare($query);
-    $stmt->execute([$nombre, $email, $password, $rol_id]);
-
-    header('Location: login.php');
-}
-?>
 
 <!DOCTYPE html>
 <html lang="en">

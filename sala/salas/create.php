@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <h1 class="my-4">Crear Nueva Sala</h1>
-        <form action="../controller/store.php" method="POST">
+        <form action="./store.php" method="POST">
             <div class="form-group">
                 <label for="nombre">Nombre</label>
                 <input type="text" name="nombre" id="nombre" class="form-control" required>

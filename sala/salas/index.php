@@ -1,3 +1,12 @@
+<?php
+require_once '../Sala.php';
+
+// Crear una instancia de la clase Sala
+$sala = new Sala();
+
+// Obtener todas las salas
+$salas = $sala->getAll();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

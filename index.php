@@ -2,8 +2,6 @@
 
 require_once './config/conexion.php';
     
-//require_once 'session.php';
-
 ?>
 
 <!DOCTYPE html>
@@ -36,9 +34,9 @@ require_once './config/conexion.php';
                             <div class="card-body">
                                 <h5 class="card-title">Proyecciones</h5>
                                 <p class="card-text">Consulta y gestiona las proyecciones de las películas, incluyendo el reparto.</p>
-                                <a href="/proyecciones" class="btn btn-primary">Ver Proyecciones</a>
-                                <a href="/proyecciones/create" class="btn btn-secondary">Agregar Proyección</a>
-                                <a href="/reparto" class="btn btn-info mt-2">Ver Reparto</a>
+                                <a href="./proyeccion/views/index.php" class="btn btn-primary">Ver Proyecciones</a>
+                                <a href="./proyeccion/views/create.php" class="btn btn-secondary">Agregar Proyección</a>
+                            
                             </div>
                         </div>
                     </div>
@@ -67,8 +65,8 @@ require_once './config/conexion.php';
                             <div class="card-body">
                                 <h5 class="card-title">Géneros</h5>
                                 <p class="card-text">Consulta y gestiona los géneros de las películas.</p>
-                                <a href="/generos" class="btn btn-primary">Ver Géneros</a>
-                                <a href="/generos/create" class="btn btn-secondary">Agregar Género</a>
+                                <a href="./genero/views/index.php" class="btn btn-primary">Ver Géneros</a>
+                                <a href="./genero/views/create.php" class="btn btn-secondary">Agregar Género</a>
                             </div>
                         </div>
                     </div>

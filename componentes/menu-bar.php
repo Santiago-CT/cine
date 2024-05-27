@@ -14,14 +14,7 @@
     <?php include('../estilos/index.css'); ?>
 </style>
 <div class="slide-bar bg-dark">    
-            <a href="index.php">Cine Colombia</a>
-            <?php 
-            if (isLoggedIn()) {
-                echo '<a href="index.php?action=logout">Cerrar sesión</a>';
-            } else {
-                echo '<a href="index.php?action=login">Iniciar sesión</a>';
-            } 
-            ?>        
+            <a href="index.php">Cine Colombia</a>                
             <a href="./views/proyecciones/index.php">Proyecciones</a>
             <a href="./views/reservaciones/index.php">Reservaciones</a>
             <a href="../sala/salas/index.php">Salas</a>
@@ -31,7 +24,7 @@
             if (isLoggedIn()) {
                 echo '<a href="?action=logout">Cerrar sesión</a>';
             } else {
-                echo '<a href="?action=login">Iniciar sesión</a>';
+                echo '<a href="../cine/login.php">Iniciar sesión</a>';
             }
             ?>
 </div>

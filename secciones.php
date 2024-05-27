@@ -1,5 +1,6 @@
 <?php
 require './config/conexion.php';
+include './componentes/session.php';
 
 session_start();
 $usuario =$_POST['user'];
@@ -10,7 +11,8 @@ $consulta = pg_query($conexion,$query);
 $cantidad=pg_num_rows($consulta);
 if($cantidad>0){
     $_SESSION['nombreusuario']=$usuario;
-    header("location: index.php");
+    login();
+    header("location: index.php");    
 }else{
     echo "Datos incorrectos";
   

@@ -1,4 +1,8 @@
-
+<?php
+require_once '../Reservacion.php';
+$reservacion = new Reservacion();
+$reservaciones = $reservacion->getAll();
+?>
 
 <!DOCTYPE html>
 <html>

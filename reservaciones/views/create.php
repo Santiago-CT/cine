@@ -8,7 +8,7 @@
 <body>
     <div class="container">
         <h1 class="mt-4">Agregar Reservación</h1>
-        <form action="../controladores/store.php" method="POST">
+        <form action="../controladores/update.php" method="POST">
             <div class="form-group">
                 <label for="persona_id">Persona ID:</label>
                 <input type="number" name="persona_id" class="form-control" required>
@@ -16,6 +16,10 @@
             <div class="form-group">
                 <label for="proyeccion_id">Proyección ID:</label>
                 <input type="number" name="proyeccion_id" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="proyeccion_id">Silla ID:</label>
+                <input type="number" name="silla_id" class="form-control" required>
             </div>
             <div class="form-group">
                 <label for="cantidad">Cantidad:</label>

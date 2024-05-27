@@ -18,7 +18,7 @@ require_once './config/conexion.php';
     <body>
         <section class="container-main">
             <?php   
-                require_once ('./componentes/menu-bar.php');
+               // require_once ('./componentes/menu-bar.php');
             ?>
             
             <div class=" text-center bg text-white p-4">

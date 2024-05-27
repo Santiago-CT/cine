@@ -30,6 +30,5 @@
         }
     }
 
-    $obj = new ConexionBD();
-    $conn = $obj->getConnection();
+    
 

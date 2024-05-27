@@ -1,25 +1,18 @@
 <?php
+require './config/conexion.php';
+
 session_start();
+$usuario =$_POST['user'];
+$clave = $_POST['pass'];
 
-function isLoggedIn() {
-    return isset($_SESSION['user_id']);
-}
-
-function getUserRole() {
-    return isset($_SESSION['user_role']) ? $_SESSION['user_role'] : null;
-}
-
-function requireLogin() {
-    if (!isLoggedIn()) {
-        header('Location: login.php');
-        exit();
-    }
-}
-
-function requireRole($role) {
-    if (getUserRole() != $role) {
-        header('Location: index.php');
-        exit();
-    }
+$query = "SELECT * FROM personas WHERE email='$usuario' AND password = '$clave'";
+$consulta = pg_query($conexion,$query);
+$cantidad=pg_num_rows($consulta);
+if($cantidad>0){
+    $_SESSION['nombreusuario']=$usuario;
+    header("location: index.php");
+}else{
+    echo "Datos incorrectos";
+  
 }
 ?>

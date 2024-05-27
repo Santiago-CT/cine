@@ -18,39 +18,74 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>REGISTRO</title>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<style>
+    .gradient-custom {
+   
+    background: #6a11cb;
+    background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+    background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+    }
+    </style>
+
+
+
 </head>
+
+
 <body>
-    <div class="container mt-5">
-        <h1 class="mb-4">Registro de Usuario</h1>
-        <form method="POST" action="register.php">
-            <div class="form-group">
-                <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" required>
+<section class="vh-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-dark text-white" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+        <form action="registrar.php" method="POST">
+            <div class="mb-md-5 mt-md-4 pb-5">
+
+              <h2 class="fw-bold mb-2 text-uppercase">REGISTRO</h2>
+              <p class="text-white-50 mb-5">INGRESA TUS DATOS!</p>
+
+              <div data-mdb-input-init class="form-outline form-white mb-4">
+                <input placeholder="Nombre" type="" name="name"  class="form-control form-control-lg" />
+              </div>
+
+              <div data-mdb-input-init class="form-outline form-white mb-4">
+                <input placeholder="Email" type="email" name="email"  class="form-control form-control-lg" />
+              </div>
+              <div data-mdb-input-init class="form-outline form-white mb-4">
+                <input placeholder="Password" type="password" name="pass"  class="form-control form-control-lg" />
+              </div>
+
+              <div data-mdb-input-init class="form-outline form-white mb-4">
+  <select name="rol" class="form-control form-control-lg">
+    <option value="1">Administrador</option>
+    <option value="2">empleado</option>
+    <option value="3">Usuario</option>
+  </select>
+</div>
+
+
+              <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5" type="submit">REGISTAR</button>
             </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Contraseña</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-            </div>
-            <div class="form-group">
-                <label for="rol_id">Rol</label>
-                <select class="form-control" id="rol_id" name="rol_id" required>
-                    <option value="1">Administrador</option>
-                    <option value="2">Empleado</option>
-                    <option value="3">Cliente</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary">Registrarse</button>
         </form>
+        <div>
+              <p class="mb-0"> <a href="./login.php" class="text-white-50 fw-bold">Login Up</a>
+              </p>
+            </div>
+        
+
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+</section>
 </body>
 </html>

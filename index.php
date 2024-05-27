@@ -1,10 +1,8 @@
 <?php
 require_once './controllers/PersonaController.php';
 require_once './controllers/CarteraController.php';
-
-    $controller = new CarteraController();
-    $controller->index();
-
+require_once './config/conexion.php';
+    
 //require_once 'session.php';
 
 ?>

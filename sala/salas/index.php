@@ -34,7 +34,8 @@ $salas = $sala->getAll();
                     <td>
                         <a href="./show.php?= $sala['id'] ?>" class="btn btn-info">Ver</a>
                         <a href="./edit.php?= $sala['id'] ?>" class="btn btn-warning">Editar</a>
-                        <form action="./delete.php" method="POST" style="display:inline;">
+                    
+                        <form action="../controller/delete.php" method="POST" style="display:inline;">
                             <input type="hidden" name="id" value="<?= $sala['id'] ?>">
                             <button type="submit" class="btn btn-danger">Eliminar</button>
                         </form>

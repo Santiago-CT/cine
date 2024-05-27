@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +15,7 @@
                 <p class="card-text">Capacidad: <?php echo $sala['capacidad']; ?></p>
             </div>
         </div>
-        <a href="/salas" class="btn btn-secondary mt-3">Volver</a>
+        <a href="./index.php" class="btn btn-secondary mt-3">Volver</a>
     </div>
 </body>
 </html>

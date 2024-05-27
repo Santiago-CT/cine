@@ -48,12 +48,12 @@ class Sala extends ConexionBD {
         }
     }
 
-    public function update($id, $data) {
+    public function update($id, $nombre,$capacidad) {
         try {
             $sql = 'UPDATE salas SET nombre = :nombre, capacidad = :capacidad WHERE id = :id';
             $stmt = ConexionBD::getConnection()->prepare($sql);
-            $stmt->bindParam(':nombre', $data['nombre']);
-            $stmt->bindParam(':capacidad', $data['capacidad']);
+            $stmt->bindParam(':nombre', $nombre);
+            $stmt->bindParam(':capacidad', $capacidad);
             $stmt->bindParam(':id', $id);
             $stmt->execute();
             return true;

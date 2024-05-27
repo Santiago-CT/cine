@@ -1,3 +1,8 @@
+<?php
+require_once '../Pelicula.php';
+$pelicula = new Pelicula;
+$peliculas = $pelicula->getAll();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,7 +10,7 @@
 </head>
 <body>
     <h1>Lista de Películas</h1>
-    <a href="/peliculas/create">Agregar Película</a>
+    <a href="./create.php">Agregar Película</a>
     <table border="1">
         <tr>
             <th>ID</th>
@@ -21,9 +26,12 @@
             <td><?php echo $pelicula['duracion']; ?></td>
             <td><?php echo $pelicula['fecha_estreno']; ?></td>
             <td>
-                <a href="/peliculas/show/<?php echo $pelicula['id']; ?>">Ver</a>
-                <a href="/peliculas/edit/<?php echo $pelicula['id']; ?>">Editar</a>
-                <a href="/peliculas/delete/<?php echo $pelicula['id']; ?>">Eliminar</a>
+                <a href="./show.php?php echo $pelicula['id']; ?>">Ver</a>
+                <a href="./edit.php?php echo $pelicula['id']; ?>">Editar</a>
+                <form action="../controller/delete.php" method="POST" style="display:inline;">
+                            <input type="hidden" name="id" value="<?= $genero['id'] ?>">
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
             </td>
         </tr>
         <?php endforeach; ?>

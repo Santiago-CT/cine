@@ -13,6 +13,6 @@
         <li><strong>Género ID:</strong> <?php echo $pelicula['genero_id']; ?></li>
         <li><strong>Director ID:</strong> <?php echo $pelicula['director_id']; ?></li>
     </ul>
-    <a href="/peliculas">Volver a la Lista</a>
+    <a href="./index.php">Volver a la Lista</a>
 </body>
 </html>

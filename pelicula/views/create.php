@@ -5,7 +5,7 @@
 </head>
 <body>
     <h1>Agregar Película</h1>
-    <form action="/peliculas/store" method="POST">
+    <form action="../controller/update.php" method="POST">
         <label for="titulo">Título:</label>
         <input type="text" name="titulo" required><br>
 

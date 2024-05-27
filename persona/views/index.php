@@ -1,4 +1,8 @@
-
+<?php
+require_once '../Persona.php';
+$persona = new Persona;
+$personas = $persona->getAll();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,21 +10,21 @@
 </head>
 <body>
     <h1>Lista de Personas</h1>
-    <a href="/var/www/html/cine/views/personas/create.php">Agregar Persona</a>
+    <a href="./create.php">Agregar Persona</a>
     <table border="1">
         <tr>
             <th>ID</th>
             <th>Nombre</th>
-            <th>Edad</th>
-            <th>Correo</th>
+            <th>Email</th>
+            <th>Rol</th>
             <th>Acciones</th>
         </tr>
         <?php foreach ($personas as $persona): ?>
         <tr>
             <td><?php echo $persona['id']; ?></td>
             <td><?php echo $persona['nombre']; ?></td>
-            <td><?php echo $persona['edad']; ?></td>
-            <td><?php echo $persona['correo']; ?></td>
+            <td><?php echo $persona['email']; ?></td>
+            <td><?php echo $persona['rol_id']; ?></td>
             <td>
                 <a href="/personas/show/<?php echo $persona['id']; ?>">Ver</a>
                 <a href="/personas/edit/<?php echo $persona['id']; ?>">Editar</a>

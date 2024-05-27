@@ -1,6 +1,6 @@
 <?php
 
-require_once 'config/config.php';
+require_once __DIR__ . '/../config/config.php';
 
 class Sala extends ConexionBD {
     private $pdo;
@@ -35,12 +35,12 @@ class Sala extends ConexionBD {
         }
     }
 
-    public function create($data) {
+    public function create($nombre,$capacidad) {
         try {
             $sql = 'INSERT INTO salas (nombre, capacidad) VALUES (:nombre, :capacidad)';
             $stmt = ConexionBD::getConnection()->prepare($sql);
-            $stmt->bindParam(':nombre', $data['nombre']);
-            $stmt->bindParam(':capacidad', $data['capacidad']);
+            $stmt->bindParam(':nombre', $nombre);
+            $stmt->bindParam(':capacidad', $capacidad);
             $stmt->execute();
             return true;
         } catch (PDOException $th) {

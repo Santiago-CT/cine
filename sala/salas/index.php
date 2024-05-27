@@ -1,3 +1,8 @@
+<?php
+require_once '../Sala.php';
+$sala = new Sala();
+$salas = $sala->getAll();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +26,7 @@
             </thead>
             <tbody>
                 <?php foreach ($salas as $sala): ?>
+                    
                 <tr>
                     <td><?= $sala['id'] ?></td>
                     <td><?= $sala['nombre'] ?></td>
@@ -28,7 +34,7 @@
                     <td>
                         <a href="./show.php?= $sala['id'] ?>" class="btn btn-info">Ver</a>
                         <a href="./edit.php?= $sala['id'] ?>" class="btn btn-warning">Editar</a>
-                        <form action="/salas/delete" method="POST" style="display:inline;">
+                        <form action="./delete.php" method="POST" style="display:inline;">
                             <input type="hidden" name="id" value="<?= $sala['id'] ?>">
                             <button type="submit" class="btn btn-danger">Eliminar</button>
                         </form>

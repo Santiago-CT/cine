@@ -1,7 +1,8 @@
 <?php
+
 require_once 'config/config.php';
 
-class Pelicula {
+class Pelicula extends ConexionBD {
     private $pdo;
 
     public function __construct() {
@@ -10,30 +11,73 @@ class Pelicula {
     }
 
     public function getAll() {
-        $stmt = $this->pdo->query('SELECT * FROM peliculas');
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        try {
+            $sql = 'SELECT * FROM peliculas';
+            $stmt = ConexionBD::getConnection()->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+            return $result;
+        } catch (PDOException $th) {
+            echo $th->getMessage();
+        }
     }
 
     public function getById($id) {
-        $stmt = $this->pdo->prepare('SELECT * FROM peliculas WHERE id = :id');
-        $stmt->execute(['id' => $id]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        try {
+            $sql = 'SELECT * FROM peliculas WHERE id = :id';
+            $stmt = ConexionBD::getConnection()->prepare($sql);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+            $result = $stmt->fetch();
+            return $result;
+        } catch (PDOException $th) {
+            echo $th->getMessage();
+        }
     }
 
     public function create($data) {
-        $stmt = $this->pdo->prepare('INSERT INTO peliculas (titulo, duracion, fecha_estreno, genero_id, director_id) VALUES (:titulo, :duracion, :fecha_estreno, :genero_id, :director_id)');
-        return $stmt->execute($data);
+        try {
+            $sql = 'INSERT INTO peliculas (titulo, duracion, fecha_estreno, genero_id, director_id) VALUES (:titulo, :duracion, :fecha_estreno, :genero_id, :director_id)';
+            $stmt = ConexionBD::getConnection()->prepare($sql);
+            $stmt->bindParam(':titulo', $data['titulo']);
+            $stmt->bindParam(':duracion', $data['duracion']);
+            $stmt->bindParam(':fecha_estreno', $data['fecha_estreno']);
+            $stmt->bindParam(':genero_id', $data['genero_id']);
+            $stmt->bindParam(':director_id', $data['director_id']);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $th) {
+            echo $th->getMessage();
+        }
     }
 
     public function update($id, $data) {
-        $data['id'] = $id;
-        $stmt = $this->pdo->prepare('UPDATE peliculas SET titulo = :titulo, duracion = :duracion, fecha_estreno = :fecha_estreno, genero_id = :genero_id, director_id = :director_id WHERE id = :id');
-        return $stmt->execute($data);
+        try {
+            $sql = 'UPDATE peliculas SET titulo = :titulo, duracion = :duracion, fecha_estreno = :fecha_estreno, genero_id = :genero_id, director_id = :director_id WHERE id = :id';
+            $stmt = ConexionBD::getConnection()->prepare($sql);
+            $stmt->bindParam(':titulo', $data['titulo']);
+            $stmt->bindParam(':duracion', $data['duracion']);
+            $stmt->bindParam(':fecha_estreno', $data['fecha_estreno']);
+            $stmt->bindParam(':genero_id', $data['genero_id']);
+            $stmt->bindParam(':director_id', $data['director_id']);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $th) {
+            echo $th->getMessage();
+        }
     }
 
     public function delete($id) {
-        $stmt = $this->pdo->prepare('DELETE FROM peliculas WHERE id = :id');
-        return $stmt->execute(['id' => $id]);
+        try {
+            $sql = 'DELETE FROM peliculas WHERE id = :id';
+            $stmt = ConexionBD::getConnection()->prepare($sql);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $th) {
+            echo $th->getMessage();
+        }
     }
 }
 ?>

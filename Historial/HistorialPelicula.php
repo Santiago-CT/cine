@@ -2,7 +2,7 @@
 
 require_once 'config/config.php';
 
-class HistorialPeliculas {
+class HistorialPelicula extends ConexionBD {
     private $pdo;
 
     public function __construct() {
@@ -11,30 +11,67 @@ class HistorialPeliculas {
     }
 
     public function getAll() {
-        $stmt = $this->pdo->query('SELECT * FROM historial_peliculas');
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        try {
+            $sql = 'SELECT * FROM historial_peliculas';
+            $stmt = ConexionBD::getConnection()->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+            return $result;
+        } catch (PDOException $th) {
+            echo $th->getMessage();
+        }
     }
 
     public function getById($id) {
-        $stmt = $this->pdo->prepare('SELECT * FROM historial_peliculas WHERE id = :id');
-        $stmt->execute(['id' => $id]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        try {
+            $sql = 'SELECT * FROM historial_peliculas WHERE id = :id';
+            $stmt = ConexionBD::getConnection()->prepare($sql);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+            $result = $stmt->fetch();
+            return $result;
+        } catch (PDOException $th) {
+            echo $th->getMessage();
+        }
     }
 
     public function create($data) {
-        $stmt = $this->pdo->prepare('INSERT INTO historial_peliculas (pelicula_id, fecha, evento) VALUES (:pelicula_id, :fecha, :evento)');
-        return $stmt->execute($data);
+        try {
+            $sql = 'INSERT INTO historial_peliculas (pelicula_id, fecha_visualizacion) VALUES (:pelicula_id, :fecha_visualizacion)';
+            $stmt = ConexionBD::getConnection()->prepare($sql);
+            $stmt->bindParam(':pelicula_id', $data['pelicula_id']);
+            $stmt->bindParam(':fecha_visualizacion', $data['fecha_visualizacion']);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $th) {
+            echo $th->getMessage();
+        }
     }
 
     public function update($id, $data) {
-        $data['id'] = $id;
-        $stmt = $this->pdo->prepare('UPDATE historial_peliculas SET pelicula_id = :pelicula_id, fecha = :fecha, evento = :evento WHERE id = :id');
-        return $stmt->execute($data);
+        try {
+            $sql = 'UPDATE historial_peliculas SET pelicula_id = :pelicula_id, fecha_visualizacion = :fecha_visualizacion WHERE id = :id';
+            $stmt = ConexionBD::getConnection()->prepare($sql);
+            $stmt->bindParam(':pelicula_id', $data['pelicula_id']);
+            $stmt->bindParam(':fecha_visualizacion', $data['fecha_visualizacion']);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $th) {
+            echo $th->getMessage();
+        }
     }
 
     public function delete($id) {
-        $stmt = $this->pdo->prepare('DELETE FROM historial_peliculas WHERE id = :id');
-        return $stmt->execute(['id' => $id]);
+        try {
+            $sql = 'DELETE FROM historial_peliculas WHERE id = :id';
+            $stmt = ConexionBD::getConnection()->prepare($sql);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $th) {
+            echo $th->getMessage();
+        }
     }
 }
 ?>

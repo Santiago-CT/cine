@@ -1,7 +1,8 @@
 <?php
+
 require_once 'config/config.php';
 
-class Genero {
+class Genero extends ConexionBD {
     private $pdo;
 
     public function __construct() {
@@ -10,30 +11,65 @@ class Genero {
     }
 
     public function getAll() {
-        $stmt = $this->pdo->query('SELECT * FROM generos');
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        try {
+            $sql = 'SELECT * FROM generos';
+            $stmt = ConexionBD::getConnection()->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+            return $result;
+        } catch (PDOException $th) {
+            echo $th->getMessage();
+        }
     }
 
     public function getById($id) {
-        $stmt = $this->pdo->prepare('SELECT * FROM generos WHERE id = :id');
-        $stmt->execute(['id' => $id]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        try {
+            $sql = 'SELECT * FROM generos WHERE id = :id';
+            $stmt = ConexionBD::getConnection()->prepare($sql);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+            $result = $stmt->fetch();
+            return $result;
+        } catch (PDOException $th) {
+            echo $th->getMessage();
+        }
     }
 
     public function create($data) {
-        $stmt = $this->pdo->prepare('INSERT INTO generos (nombre) VALUES (:nombre)');
-        return $stmt->execute($data);
+        try {
+            $sql = 'INSERT INTO generos (nombre) VALUES (:nombre)';
+            $stmt = ConexionBD::getConnection()->prepare($sql);
+            $stmt->bindParam(':nombre', $data['nombre']);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $th) {
+            echo $th->getMessage();
+        }
     }
 
     public function update($id, $data) {
-        $data['id'] = $id;
-        $stmt = $this->pdo->prepare('UPDATE generos SET nombre = :nombre WHERE id = :id');
-        return $stmt->execute($data);
+        try {
+            $sql = 'UPDATE generos SET nombre = :nombre WHERE id = :id';
+            $stmt = ConexionBD::getConnection()->prepare($sql);
+            $stmt->bindParam(':nombre', $data['nombre']);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $th) {
+            echo $th->getMessage();
+        }
     }
 
     public function delete($id) {
-        $stmt = $this->pdo->prepare('DELETE FROM generos WHERE id = :id');
-        return $stmt->execute(['id' => $id]);
+        try {
+            $sql = 'DELETE FROM generos WHERE id = :id';
+            $stmt = ConexionBD::getConnection()->prepare($sql);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $th) {
+            echo $th->getMessage();
+        }
     }
 }
 ?>

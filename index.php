@@ -20,7 +20,7 @@ require_once './config/conexion.php';
     </head>
     <body>
         <section class="container-main">
-            <?php 
+            <?php   
                 require_once ('./componentes/menu-bar.php');
             ?>
             

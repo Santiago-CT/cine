@@ -12,7 +12,7 @@ $cantidad=pg_num_rows($consulta);
 if($cantidad>0){
     $_SESSION['nombreusuario']=$usuario;
     login();
-    header("location: index.php");    
+    header("location: inde.php");    
 }else{
     echo "Datos incorrectos";
   

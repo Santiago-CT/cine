@@ -1,5 +1,5 @@
 <?php
-    include('../componentes/session.php');
+    include('./componentes/session.php');
     // Manejar acciones de login y logout
     if (isset($_GET['action'])) {
     if ($_GET['action'] == 'login') {

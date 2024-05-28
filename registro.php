@@ -1,73 +1,97 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>REGISTRO</title>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<style>
-    .gradient-custom {
-   
-    background: #6a11cb;
-    background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
-    background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
-    }
+    <title>Crear Cuenta - Cine Multiplex</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .register-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        .register-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .register-header h1 {
+            margin: 0;
+            font-size: 2em;
+            color: #ff6600;
+        }
+        .register-header p {
+            margin: 0;
+            color: #ff6600;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .btn-primary {
+            background-color: #ff6600;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #e65a00;
+        }
+        .additional-links {
+            text-align: center;
+            margin-top: 15px;
+        }
+        .additional-links a {
+            color: #ff6600;
+            text-decoration: none;
+        }
+        .additional-links a:hover {
+            text-decoration: underline;
+        }
     </style>
-
-
-
 </head>
-
-
 <body>
-<section class="vh-100 gradient-custom">
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-        <div class="card bg-dark text-white" style="border-radius: 1rem;">
-          <div class="card-body p-5 text-center">
-        <form action="registrar.php" method="POST">
-            <div class="mb-md-5 mt-md-4 pb-5">
-
-              <h2 class="fw-bold mb-2 text-uppercase">REGISTRO</h2>
-              <p class="text-white-50 mb-5">INGRESA TUS DATOS!</p>
-
-              <div data-mdb-input-init class="form-outline form-white mb-4">
-                <input placeholder="Nombre" type="" name="name"  class="form-control form-control-lg" />
-              </div>
-
-              <div data-mdb-input-init class="form-outline form-white mb-4">
-                <input placeholder="Email" type="email" name="email"  class="form-control form-control-lg" />
-              </div>
-              <div data-mdb-input-init class="form-outline form-white mb-4">
-                <input placeholder="Password" type="password" name="pass"  class="form-control form-control-lg" />
-              </div>
-
-              <div data-mdb-input-init class="form-outline form-white mb-4">
-  <select name="rol" class="form-control form-control-lg">
-    <option value="1">Administrador</option>
-    <option value="2">empleado</option>
-    <option value="3">Usuario</option>
-  </select>
-</div>
-
-
-              <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5" type="submit">REGISTAR</button>
+    <div class="register-container">
+        <div class="register-header">
+            <h1>Cine Multiplex</h1>
+            <p>¡Somos parte de tu alegría!</p>
+        </div>
+        <form action="./registrar.php" method="POST">
+            <div class="form-group">
+                <label for="name">Nombre *</label>
+                <input type="text" name="nombre" class="form-control" placeholder="Escriba su nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Correo electrónico *</label>
+                <input type="email" name="email" id="email" class="form-control" placeholder="Escriba su correo electrónico" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Contraseña *</label>
+                <input type="password" name="password"  class="form-control" placeholder="Escriba su contraseña" required>
+            </div>
+            <div class="form-group">
+                <label for="role">Rol *</label>
+                <select name="rol" id="rol" class="form-control" required>
+                    <option value="1">Administrador</option>
+                    <option value="2">Empleado</option>
+                    <option value="3">Usuario</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Crear cuenta</button>
+            <div class="additional-links mt-3">
+                <a href="login.php">¿Ya tienes cuenta? Inicia sesión</a>
             </div>
         </form>
-        <div>
-              <p class="mb-0"> <a href="./login.php" class="text-white-50 fw-bold">Login Up</a>
-              </p>
-            </div>
-        
-
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
-</section>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

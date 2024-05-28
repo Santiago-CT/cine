@@ -2,7 +2,7 @@
 require_once '../Proyeccion.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['id']) && isset($_POST['pelicula_id']) && isset($_POST['sala_id']) && isset($_POST['fecha']) && isset($_POST['hora'])) {
+    if (isset($_POST['id']) || isset($_POST['pelicula_id']) || isset($_POST['sala_id']) || isset($_POST['fecha']) || isset($_POST['hora'])) {
         $id = $_POST['id'];
         $pelicula_id = $_POST['pelicula_id'];
         $sala_id = $_POST['sala_id'];
@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $proyeccion->create(['pelicula_id' => $pelicula_id, 'sala_id' => $sala_id, 'fecha' => $fecha, 'hora' => $hora]);
         }
 
-        header('Location: ../proyecciones/index.php');
+        header('Location: ../proyeccion/views/index.php');
         exit();
     } else {
         echo "Por favor, complete todos los campos.";

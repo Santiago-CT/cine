@@ -1,0 +1,57 @@
+/* Puedes agregar estilos adicionales aquí si es necesario */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #ff6600;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.navbar-nav .nav-item .nav-link {
+    color: white;
+}
+
+.filter {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.cartelera {
+    text-align: center;
+}
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.card img {
+    max-width: 100%;
+    border-radius: 5px 5px 0 0;
+}
+
+.card-title {
+    font-size: 1em;
+    margin: 10px 0 5px;
+}
+
+.card-text {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.login-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}

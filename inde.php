@@ -1,12 +1,15 @@
-<?php
-session_start();
 
+<?php
+//session_start();
+/*
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
 }
-?>
 
+$user_name = $_SESSION['user_name'];
+$user_role = $_SESSION['user_role'];
+*/?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -14,15 +17,10 @@ if (!isset($_SESSION['user_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cine Multiplex</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styke.css">
 </head>
 <body>
-    <header class="bg-primary text-white text-center py-3">
-        <div class="container">
-            <h1>Cine Multiplex Villacentro</h1>
-            <p>¡Somos parte de tu alegría!</p>
-        </div>
-    </header>
+    
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="#">Cine Multiplex</a>
@@ -41,9 +39,15 @@ if (!isset($_SESSION['user_id'])) {
             </div>
         </div>
     </nav>
+    <header class="bg-primary text-white text-center py-3">
+        <div class="container">
+            <h1>Cine Multiplex Villacentro</h1>
+            <p>¡Somos parte de tu alegría!</p>
+        </div>
+    </header>
     <main class="container my-4">
         <section class="filter mb-4">
-            <form action="index.php" method="GET" class="form-inline justify-content-center">
+            <form action="./proyeccion/views/index.php" method="GET" class="form-inline justify-content-center">
                 <div class="form-group mx-2">
                     <label for="pelicula" class="mr-2">Película:</label>
                     <select name="pelicula" id="pelicula" class="form-control">

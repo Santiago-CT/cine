@@ -1,19 +1,26 @@
 <?php
 require './config/conexion.php';
 
-session_start();
-
-$nombre = $_POST['nombre'];
-
+$nombre = $_POST['name'];
 $email = $_POST['email'];
-$password = $_POST['password'];
+$password = $_POST['pass'];
 $rol = $_POST['rol'];
-$query = "INSERT INTO personas (nombre, email, password,rol_id) VALUES ('$nombre', '$email', '$password',$rol)";
+echo 'nombre: '.$nombre. ' email: ' . $email.' password: ' . $password. ' rol: ' . $rol;
+if (empty($nombre) || empty($email) || empty($password) || empty($rol)) {
+    echo "Todos los campos son obligatorios.";
+    exit();
+}
+
+$nombre = pg_escape_string($conexion, $nombre);
+$email = pg_escape_string($conexion, $email);
+$password = pg_escape_string($conexion, $password);
+$rol = (int)$rol;
+
+$query = "INSERT INTO personas (nombre, email, password, rol_id) VALUES ('$nombre', '$email', '$password', $rol)";
 if (pg_query($conexion, $query)) {
-    
-    header("location: login.php");
+    header("Location: login.php");
     exit();
 } else {
-    // If there's an error, display an error message
-    echo $rol.pg_last_error($conexion);
+    echo pg_last_error($conexion);
 }
+?>

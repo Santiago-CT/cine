@@ -31,22 +31,22 @@ $salas = $sala->getAll();
                 </thead>
                 <tbody>
                     <?php foreach ($salas as $sala): ?>
-                        
                         <tr>
                             <td><?= $sala['id'] ?></td>
                             <td><?= $sala['nombre'] ?></td>
                             <td><?= $sala['capacidad'] ?></td>
                             <td>
-                                <a href="./show.php?= $sala['id'] ?>" class="btn btn-info">Ver</a>
-                                <a href="./edit.php?= $sala['id'] ?>" class="btn btn-warning">Editar</a>
-                                
-                                <form action="../controller/delete.php" method="POST" style="display:inline;">
-                                    <input type="hidden" name="id" value="<?= $sala['id'] ?>">
-                                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                                </form>
+                                <a href="./show.php?id=<?= $sala['id'] ?>" class="btn btn-info">Ver</a>
+                                <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] !== 'cliente'): ?>
+                                    <a href="./edit.php?id=<?= $sala['id'] ?>" class="btn btn-warning">Editar</a>
+                                    <form action="./controller/delete.php" method="POST" style="display:inline;">
+                                        <input type="hidden" name="id" value="<?= $sala['id'] ?>">
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                    </form>
+                                <?php endif; ?>
                             </td>
-                        </tr>
-                        <?php endforeach; ?>
+                        </tr>   
+                    <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>        

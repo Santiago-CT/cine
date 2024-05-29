@@ -35,7 +35,9 @@ require_once './config/conexion.php';
                                 <h5 class="card-title">Proyecciones</h5>
                                 <p class="card-text">Consulta y gestiona las proyecciones de las películas, incluyendo el reparto.</p>
                                 <a href="./proyeccion/views/index.php" class="btn btn-primary">Ver Proyecciones</a>
-                                <a href="./proyeccion/views/create.php" class="btn btn-secondary">Agregar Proyección</a>
+                                <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] !== 'cliente'): ?>
+                                    <a href="./proyeccion/views/create.php" class="btn btn-secondary">Agregar Proyección</a>
+                                <?php endif; ?>
                             
                             </div>
                         </div>
@@ -46,7 +48,9 @@ require_once './config/conexion.php';
                                 <h5 class="card-title">Reservaciones</h5>
                                 <p class="card-text">Consulta y gestiona las reservaciones de entradas.</p>
                                 <a href="./reservaciones/views/index.php" class="btn btn-primary">Ver Reservaciones</a>
-                                <a href="./reservaciones/views/create.php" class="btn btn-secondary">Agregar Reservación</a>
+                                <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] !== 'cliente'): ?>
+                                    <a href="./proyeccion/views/create.php" class="btn btn-secondary">Agregar Proyección</a>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
@@ -56,7 +60,9 @@ require_once './config/conexion.php';
                                 <h5 class="card-title">Salas</h5>
                                 <p class="card-text">Consulta y gestiona la información de las salas.</p>
                                 <a href="./sala/salas/index.php" class="btn btn-primary">Ver Salas</a>
-                                <a href="./sala/salas/create.php" class="btn btn-secondary">Agregar Sala</a>
+                                <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] !== 'cliente'): ?>
+                                    <a href="./proyeccion/views/create.php" class="btn btn-secondary">Agregar Proyección</a>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
@@ -66,7 +72,9 @@ require_once './config/conexion.php';
                                 <h5 class="card-title">Géneros</h5>
                                 <p class="card-text">Consulta y gestiona los géneros de las películas.</p>
                                 <a href="./genero/views/index.php" class="btn btn-primary">Ver Géneros</a>
-                                <a href="./genero/views/create.php" class="btn btn-secondary">Agregar Género</a>
+                                <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] !== 'cliente'): ?>                                  
+                                    <a href="./genero/views/create.php" class="btn btn-secondary">Agregar Género</a>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>

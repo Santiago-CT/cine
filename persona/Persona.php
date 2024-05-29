@@ -38,22 +38,29 @@ class Persona extends ConexionBD {
     }
 
     public function create($data) {
-  
-        try{
-            $sql ='INSERT INTO personas (nombre,email,password,rol_id) VALUES (:nombre,:email,:password,:rol_id)';
+        try {
+            // Verifica que todos los campos necesarios están presentes
+            if (!isset($data['nombre'], $data['email'], $data['password'], $data['rol_id'])) {
+                throw new Exception('Datos incompletos');
+            }
+    
+            $sql = 'INSERT INTO personas (nombre, email, password, rol_id) VALUES (:nombre, :email, :password, :rol_id)';
             $stmt = ConexionBD::getConnection()->prepare($sql);
-            $stmt->bindParam(':nombre',$data['nombre']);
-            $stmt->bindParam(':email',$data['email']);
-            $stmt->bindParam(':password',$data['password']);
-            $stmt->bindParam(':rol_id',$data['rol_id']);
+            $stmt->bindParam(':nombre', $data['nombre']);
+            $stmt->bindParam(':email', $data['email']);
+            $stmt->bindParam(':password', $data['password']);
+            $stmt->bindParam(':rol_id', $data['rol_id']);
             $stmt->execute();
-            
+    
             return true;
     
-        }catch(PDOException $th){
+        } catch (PDOException $th) {
             echo $th->getMessage();
+        } catch (Exception $e) {
+            echo $e->getMessage();
         }
     }
+    
 
     public function update($id, $data) {
         try{

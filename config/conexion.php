@@ -1,2 +1,2 @@
 <?php
-$conexion = pg_connect("host=localhost dbname=cine user=postgres password=Cardona3234");
+$conexion = pg_connect("host=localhost dbname=cine user=juan password=j1122920156T");

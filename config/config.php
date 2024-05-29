@@ -1,7 +1,7 @@
 <?php
     class ConexionBD {
         private $host = "localhost";
-        private $db_name = "proyecto";
+        private $db_name = "cine";
         private $port = "5432";
         private $username = "juan";
         private $password = "j1122920156T";

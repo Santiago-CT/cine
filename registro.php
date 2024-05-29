@@ -1,4 +1,23 @@
+<?php
+require './config/conexion.php';  // Conexión a la base de datos
 
+// Realizar la consulta para obtener los roles
+$query = "SELECT id, name FROM rol";
+$result = pg_query($conexion, $query);
+
+// Manejar el caso en que la consulta falle
+if (!$result) {
+    echo "Error en la consulta de roles.";
+    exit;
+}
+
+// Almacenar los roles en un arreglo
+$roles = [];
+while ($row = pg_fetch_assoc($result)) {
+    $roles[] = $row;
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,12 +65,12 @@
               </div>
 
               <div data-mdb-input-init class="form-outline form-white mb-4">
-  <select name="rol" class="form-control form-control-lg">
-    <option value="1">Administrador</option>
-    <option value="2">empleado</option>
-    <option value="3">Usuario</option>
-  </select>
-</div>
+                <select name="rol" class="form-control form-control-lg">
+                  <?php foreach ($roles as $rol): ?>
+                      <option value="<?= htmlspecialchars($rol['id']); ?>"><?= htmlspecialchars($rol['name']); ?></option>
+                  <?php endforeach; ?>
+                </select>
+              </div>
 
 
               <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5" type="submit">REGISTAR</button>

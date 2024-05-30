@@ -12,9 +12,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
 
         if (!empty($id)) {
-            $pelicula->update($id, ['titulo' => $titulo, 'genero_id' => $genero_id, 'director' => $director, 'fecha_estreno' => $fecha_estreno]);
+            $pelicula->update($id, $titulo,$duracion,$fecha_estreno,$director,$sinopsis,$genero,$restriccion,$idioma,$poster_url,$trailer_url);
         } else {
-            $pelicula->create(['titulo' => $titulo, 'genero_id' => $genero_id, 'director' => $director, 'fecha_estreno' => $fecha_estreno]);
+            $pelicula->create($id, $titulo,$duracion,$fecha_estreno,$director,$sinopsis,$genero,$restriccion,$idioma,$poster_url,$trailer_url);
         }
 
         header('Location: ../views/index.php');

@@ -1,7 +1,7 @@
 <?php
 require './config/conexion.php';
 
-$nombre = $_POST['name'];
+$nombre = $_POST['nombre'];
 $email = $_POST['email'];
 $password = $_POST['pass'];
 $rol = $_POST['rol'];

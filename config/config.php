@@ -3,8 +3,8 @@
         private $host = "localhost";
         private $db_name = "cine";
         private $port = "5432";
-        private $username = "juan";
-        private $password = "j1122920156T";
+        private $username = "postgres";
+        private $password = "Cardona3234";
         private $conn;
 
         public function __construct() {

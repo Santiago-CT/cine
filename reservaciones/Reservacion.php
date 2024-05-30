@@ -1,6 +1,6 @@
 <?php
 
-require_once 'config/config.php';
+require_once __DIR__ . '/../config/config.php';
 
 class Reservacion extends ConexionBD {
     private $pdo;
@@ -14,6 +14,7 @@ class Reservacion extends ConexionBD {
         try {
             $sql = 'SELECT * FROM reservaciones';
             $stmt = ConexionBD::getConnection()->prepare($sql);
+
             $stmt->execute();
             $result = $stmt->fetchAll();
             return $result;
@@ -35,16 +36,15 @@ class Reservacion extends ConexionBD {
         }
     }
 
-    public function create($data) {
+    public function create($persona_id, $proyeccion_id,$silla_id,$fecha_reservacion,$cantidad) {
         try {
             $sql = 'INSERT INTO reservaciones (persona_id, sala_id, silla_id, proyeccion_id, fecha_reservacion, estado) VALUES (:persona_id, :sala_id, :silla_id, :proyeccion_id, :fecha_reservacion, :estado)';
             $stmt = ConexionBD::getConnection()->prepare($sql);
-            $stmt->bindParam(':persona_id', $data['persona_id']);
-            $stmt->bindParam(':sala_id', $data['sala_id']);
-            $stmt->bindParam(':silla_id', $data['silla_id']);
-            $stmt->bindParam(':proyeccion_id', $data['proyeccion_id']);
-            $stmt->bindParam(':fecha_reservacion', $data['fecha_reservacion']);
-            $stmt->bindParam(':estado', $data['estado']);
+            $stmt->bindParam(':persona_id', $persona_id);
+            $stmt->bindParam(':proyeccion_id', $proyeccion_id);
+            $stmt->bindParam(':silla_id', $silla_id);
+            $stmt->bindParam(':fecha_reservacion', $fecha_reservacion);
+            $stmt->bindParam(':cantidad', $cantidad);
             $stmt->execute();
             return true;
         } catch (PDOException $th) {
@@ -52,16 +52,15 @@ class Reservacion extends ConexionBD {
         }
     }
 
-    public function update($id, $data) {
+    public function update($id, $persona_id, $proyeccion_id,$silla_id,$fecha_reservacion,$cantidad) {
         try {
             $sql = 'UPDATE reservaciones SET persona_id = :persona_id, sala_id = :sala_id, silla_id = :silla_id, proyeccion_id = :proyeccion_id, fecha_reservacion = :fecha_reservacion, estado = :estado WHERE id = :id';
             $stmt = ConexionBD::getConnection()->prepare($sql);
-            $stmt->bindParam(':persona_id', $data['persona_id']);
-            $stmt->bindParam(':sala_id', $data['sala_id']);
-            $stmt->bindParam(':silla_id', $data['silla_id']);
-            $stmt->bindParam(':proyeccion_id', $data['proyeccion_id']);
-            $stmt->bindParam(':fecha_reservacion', $data['fecha_reservacion']);
-            $stmt->bindParam(':estado', $data['estado']);
+            $stmt->bindParam(':persona_id', $persona_id);
+            $stmt->bindParam(':proyeccion_id', $proyeccion_id);
+            $stmt->bindParam(':silla_id', $silla_id);
+            $stmt->bindParam(':fecha_reservacion', $fecha_reservacion);
+            $stmt->bindParam(':cantidad', $cantidad);
             $stmt->bindParam(':id', $id);
             $stmt->execute();
             return true;

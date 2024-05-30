@@ -9,7 +9,7 @@ require_once './config/conexion.php';
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Gestión de Cine Reyes</title>
+        <title>Cine Colombia</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <style>           
             <?php include('./estilos/index.css'); ?>
@@ -17,14 +17,14 @@ require_once './config/conexion.php';
     </head>
     <body>
         <section class="container-main">
-            <?php 
-                require_once ('./componentes/menu-bar.php');
+            <?php   
+               //require_once ('./componentes/menu-bar.php');
             ?>
             
             <div class=" text-center bg text-white p-4">
-                <h1 class="display-4">Bienvenido a Reyes Colombia Villavicencio</h1>
+                <h1 class="display-4">Bienvenido a Cine Colombia Villavicencio</h1>
                 <p class="lead">Gestión de películas, salas, reservaciones y más.</p>
-                <a class="btn btn-primary btn-lg" href="/reservaciones/create" role="button">Hacer una Reservación</a>
+                <a class="btn btn-primary btn-lg" href="./reservaciones/views/create.php" role="button">Hacer una Reservación</a>
             </div>
 
             <div class="container">

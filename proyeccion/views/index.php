@@ -20,12 +20,27 @@
         .proyeccion .details {
             margin-top: 10px;
         }
+        .bttn{
+            block-size: auto;
+            padding: 3px;
+            box-shadow: 2px;
+            top: 20px;
+            left: 20px;
+            margin-left: 20px;
+            margin-top: 30px;
+        }
+        .section{
+            height: 100%;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1 class="mt-4">Lista de Proyecciones</h1>
-        <a href="/proyecciones/create" class="btn btn-primary mb-4">Agregar Proyección</a>
+    <section>
+        <a class="bttn" href="../../index.php">Volver</a>
+        <div class="container">
+            <h1 class="mt-4">Lista de Proyecciones</h1>
+        <a href="./create.php" class="btn btn-primary mb-4">Agregar Proyección</a>
         <div class="row">
             <?php foreach ($proyecciones as $proyeccion): ?>
                 <div class="col-md-4">
@@ -43,8 +58,9 @@
                         </div>
                     </div>
                 </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
+            </div>
         </div>
-    </div>
+    </section>
 </body>
 </html>

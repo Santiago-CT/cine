@@ -20,7 +20,7 @@ class ProyeccionController {
     }
 
     public function create() {
-        include 'views/proyecciones/create.php';
+        include '../views/create.php';
     }
 
     public function store() {

@@ -56,26 +56,7 @@ header {
     background-color: #f9f9f9;
 }
 .ctn{
-    padding: 70px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    height: 60vh;
-    width: 100%;    
-    text-size-adjust: 40px;    
-    background-color: #86a1d2;
-}
-.utils{
-    padding: 50px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    height: 40vh;
-    width: 100%;
-}
-.utils div{
-    box-shadow: #666;    
+    background-color: #3280ed;
+    padding: 2px;
+
 }

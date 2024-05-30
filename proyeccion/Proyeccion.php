@@ -1,6 +1,5 @@
 <?php
-
-require_once 'config/config.php';
+require_once __DIR__ . '/../config/config.php'; // Ajuste de la ruta
 
 class Proyeccion extends ConexionBD {
     private $pdo;
@@ -37,7 +36,7 @@ class Proyeccion extends ConexionBD {
 
     public function create($data) {
         try {
-            $sql = 'INSERT INTO proyecciones (sala_id, pelicula_id, fecha, hora) VALUES (:sala_id, :pelicula_id, :fecha, :hora)';
+            $sql = "INSERT INTO proyecciones (sala_id, pelicula_id, fecha, hora) VALUES (:sala_id, :pelicula_id, :fecha, :hora)";
             $stmt = ConexionBD::getConnection()->prepare($sql);
             $stmt->bindParam(':sala_id', $data['sala_id']);
             $stmt->bindParam(':pelicula_id', $data['pelicula_id']);
@@ -47,12 +46,13 @@ class Proyeccion extends ConexionBD {
             return true;
         } catch (PDOException $th) {
             echo $th->getMessage();
+            return false;
         }
     }
 
     public function update($id, $data) {
         try {
-            $sql = 'UPDATE proyecciones SET sala_id = :sala_id, pelicula_id = :pelicula_id, fecha = :fecha, hora = :hora WHERE id = :id';
+            $sql = "UPDATE proyecciones SET sala_id = :sala_id, pelicula_id = :pelicula_id, fecha = :fecha, hora = :hora WHERE id = :id";
             $stmt = ConexionBD::getConnection()->prepare($sql);
             $stmt->bindParam(':sala_id', $data['sala_id']);
             $stmt->bindParam(':pelicula_id', $data['pelicula_id']);
@@ -63,18 +63,7 @@ class Proyeccion extends ConexionBD {
             return true;
         } catch (PDOException $th) {
             echo $th->getMessage();
-        }
-    }
-
-    public function delete($id) {
-        try {
-            $sql = 'DELETE FROM proyecciones WHERE id = :id';
-            $stmt = ConexionBD::getConnection()->prepare($sql);
-            $stmt->bindParam(':id', $id);
-            $stmt->execute();
-            return true;
-        } catch (PDOException $th) {
-            echo $th->getMessage();
+            return false;
         }
     }
 }

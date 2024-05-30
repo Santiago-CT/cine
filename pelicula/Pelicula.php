@@ -20,11 +20,38 @@ class Pelicula extends ConexionBD {
             echo $th->getMessage();
         }
     }
+    public function getProyeccion($peliculaId, $fecha, $hora) {
+        try {
+            $sql = 'SELECT * FROM proyecciones WHERE pelicula_id = :pelicula_id AND fecha = :fecha AND hora = :hora';
+            $stmt = ConexionBD::getConnection()->prepare($sql);
+            $stmt->bindParam(':pelicula_id', $peliculaId);
+            $stmt->bindParam(':fecha', $fecha);
+            $stmt->bindParam(':hora', $hora);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $result ? $result : null;
+        } catch (PDOException $th) {
+            echo $th->getMessage();
+        }
+    }
     public function getFecha($nombre_pelicula) {
         try {
             $sql = 'SELECT fecha_proyeccion, hora_proyeccion FROM vista_proyecciones_peliculas WHERE nombre_pelicula = :nombre_pelicula';
             $stmt = ConexionBD::getConnection()->prepare($sql);
             $stmt->bindParam(':nombre_pelicula', $nombre_pelicula);
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+            return $result;
+        } catch (PDOException $th) {
+            echo $th->getMessage();
+        }
+    }
+    public function getHora($nombre_pelicula,$fecha_proyeccion) {
+        try {
+            $sql = 'SELECT  hora_proyeccion FROM vista_proyecciones_peliculas WHERE nombre_pelicula = :nombre_pelicula AND fecha_proyeccion=:fecha_proyeccion'  ;
+            $stmt = ConexionBD::getConnection()->prepare($sql);
+            $stmt->bindParam(':nombre_pelicula', $nombre_pelicula);
+            $stmt->bindParam(':fecha_proyeccion', $fecha_proyeccion);
             $stmt->execute();
             $result = $stmt->fetchAll();
             return $result;

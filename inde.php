@@ -1,8 +1,8 @@
 <?php
 include('./secciones.php');
 include '../cine/pelicula/Pelicula.php';
+
 $data = new Pelicula();
-$data1 = new Pelicula();
 
 $nombre_pelicula = isset($_POST['nombre_pelicula']) ? $_POST['nombre_pelicula'] : '';
 $fecha_seleccionada = isset($_POST['fecha']) ? $_POST['fecha'] : '';
@@ -17,8 +17,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mensaje_error = "Por favor, llene todos los campos antes de continuar.";
     }
 }
-$movies = $data1->getVistaPP();
+$peliculas = $data->getAll();
+$movies = $data->getVistaPP();
 $peli = $data->getFecha($nombre_pelicula);
+
 
 ?>
 <!DOCTYPE html>
@@ -29,7 +31,7 @@ $peli = $data->getFecha($nombre_pelicula);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cine Multiplex</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styke.css">
 </head>
 
 <body>
@@ -78,11 +80,20 @@ $peli = $data->getFecha($nombre_pelicula);
                     </select>
                 </div>
                 <div class="form-group mx-2">
+                    <?php
+                    $fechas_proyeccion = array();
+                    foreach ($peli as $proyeccion) {
+                        $fecha = $proyeccion['fecha_proyeccion'];
+                        if (!in_array($fecha, $fechas_proyeccion)) {
+                            $fechas_proyeccion[] = $fecha;
+                        }
+                    }
+                    ?>
                     <label for="fecha" class="mr-2">Fecha:</label>
                     <select name="fecha" id="fecha" class="form-control">
                         <option value="" disabled selected>Seleccione una fecha</option>
-                        <?php foreach ($peli as $proyeccion) : ?>
-                            <option value="<?php echo $proyeccion['fecha_proyeccion']; ?>" <?php echo ($proyeccion['fecha_proyeccion'] === $fecha_seleccionada) ? 'selected' : ''; ?>><?php echo $proyeccion['fecha_proyeccion']; ?></option>
+                        <?php foreach ($fechas_proyeccion as $fecha) : ?>
+                            <option value="<?php echo $fecha; ?>" <?php echo ($fecha === $fecha_seleccionada) ? 'selected' : ''; ?>><?php echo $fecha; ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
@@ -101,8 +112,8 @@ $peli = $data->getFecha($nombre_pelicula);
         </section>
         <section class="cartelera">
             <h2 class="text-center mb-4">En Cartelera</h2>
-            <div class="row">
-                <?php foreach ($movies as $movie) : ?>
+            <div class="row" >
+                <?php foreach ($peliculas as $movie) : ?>
                     <div class="col-md-4 col-lg-3 mb-4">
                         <div class="card h-100">
                             <img src="<?php echo $movie['poster_url']; ?>" class="card-img-top" alt="<?php echo $movie['titulo']; ?>">
@@ -111,9 +122,12 @@ $peli = $data->getFecha($nombre_pelicula);
                                 <p class="card
                                 -text"><?php echo $movie['sinopsis']; ?></p>
                             </div>
+                           
                         </div>
+                       
                     </div>
                 <?php endforeach; ?>
+              
             </div>
         </section>
     </main>

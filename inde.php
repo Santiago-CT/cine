@@ -1,26 +1,38 @@
-
 <?php
-//session_start();
-/*
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit();
-}
+include('./secciones.php');
+include '../cine/pelicula/Pelicula.php';
+$data = new Pelicula();
+$data1 = new Pelicula();
 
-$user_name = $_SESSION['user_name'];
-$user_role = $_SESSION['user_role'];
-*/?>
+$nombre_pelicula = isset($_POST['nombre_pelicula']) ? $_POST['nombre_pelicula'] : '';
+$fecha_seleccionada = isset($_POST['fecha']) ? $_POST['fecha'] : '';
+$hora_seleccionada = isset($_POST['hora']) ? $_POST['hora'] : '';
+$mensaje_error = '';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (!empty($nombre_pelicula) && !empty($fecha_seleccionada) && !empty($hora_seleccionada)) {
+        header("Location: ./pelicula/views/index1.php");
+        exit;
+    } else {
+        $mensaje_error = "Por favor, llene todos los campos antes de continuar.";
+    }
+}
+$movies = $data1->getVistaPP();
+$peli = $data->getFecha($nombre_pelicula);
+
+?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cine Multiplex</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styke.css">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="#">Cine Multiplex</a>
@@ -34,7 +46,14 @@ $user_role = $_SESSION['user_role'];
                     <li class="nav-item"><a class="nav-link" href="#">Convenios</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Tarjeta Club</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
-                    <li class="nav-item"><a class="nav-link" href="login.php">Iniciar Sesión</a></li>
+                    <?php
+                    // Mostrar el estado de la sesión
+                    if (isset($_SESSION['rol'])) {
+                        echo '<li class="nav-item"><a class="nav-link" href="./secciones.php?action=logout">Cerrar Sesión</a></li>';
+                    } else {
+                        echo '<li class="nav-item"><a class="nav-link" href="login.php">Iniciar Sesión</a></li>';
+                    }
+                    ?>
                 </ul>
             </div>
         </div>
@@ -47,37 +66,50 @@ $user_role = $_SESSION['user_role'];
     </header>
     <main class="container my-4">
         <section class="filter mb-4">
-            <form action="./proyeccion/views/index.php" method="GET" class="form-inline justify-content-center">
+            <form action="" method="post" class="form-inline justify-content-center" id="reservationForm">
                 <div class="form-group mx-2">
                     <label for="pelicula" class="mr-2">Película:</label>
-                    <select name="pelicula" id="pelicula" class="form-control">
-                        <option value="">Todas</option>
-                        <?php include 'data.php'; foreach ($movies as $movie): ?>
-                            <option value="<?php echo $movie['title']; ?>"><?php echo $movie['title']; ?></option>
+                    <select name="nombre_pelicula" class="form-control" onchange="this.form.submit()">
+                        <option value="" disabled selected>Seleccione una pelicula</option>
+                        <?php
+                        foreach ($movies as $movie) : ?>
+                            <option value="<?php echo $movie['nombre_pelicula']; ?>" <?php echo ($movie['nombre_pelicula'] === $nombre_pelicula) ? 'selected' : ''; ?>><?php echo $movie['nombre_pelicula']; ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
                 <div class="form-group mx-2">
                     <label for="fecha" class="mr-2">Fecha:</label>
-                    <input type="date" name="fecha" id="fecha" class="form-control">
+                    <select name="fecha" id="fecha" class="form-control">
+                        <option value="" disabled selected>Seleccione una fecha</option>
+                        <?php foreach ($peli as $proyeccion) : ?>
+                            <option value="<?php echo $proyeccion['fecha_proyeccion']; ?>" <?php echo ($proyeccion['fecha_proyeccion'] === $fecha_seleccionada) ? 'selected' : ''; ?>><?php echo $proyeccion['fecha_proyeccion']; ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
                 <div class="form-group mx-2">
                     <label for="hora" class="mr-2">Hora:</label>
-                    <input type="time" name="hora" id="hora" class="form-control">
+                    <select name="hora" id="hora" class="form-control">
+                        <option value="" disabled selected>Seleccione una hora</option>
+                        <?php foreach ($peli as $proyeccion) : ?>
+                            <option value="<?php echo $proyeccion['hora_proyeccion']; ?>" <?php echo ($proyeccion['hora_proyeccion'] === $hora_seleccionada) ? 'selected' : ''; ?>><?php echo $proyeccion['hora_proyeccion']; ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
-                <button type="submit" class="btn btn-primary mx-2">Reservar</button>
+                <button type="submit" class="btn btn-primary">Reservar</button>
             </form>
+            <div id="errorMessage" class="alert alert-danger" style="display: none;"><?php echo $mensaje_error; ?></div>
         </section>
         <section class="cartelera">
             <h2 class="text-center mb-4">En Cartelera</h2>
             <div class="row">
-                <?php foreach ($movies as $movie): ?>
+                <?php foreach ($movies as $movie) : ?>
                     <div class="col-md-4 col-lg-3 mb-4">
                         <div class="card h-100">
-                            <img src="<?php echo $movie['image']; ?>" class="card-img-top" alt="<?php echo $movie['title']; ?>">
+                            <img src="<?php echo $movie['poster_url']; ?>" class="card-img-top" alt="<?php echo $movie['titulo']; ?>">
                             <div class="card-body text-center">
-                                <h5 class="card-title"><?php echo $movie['title']; ?></h5>
-                                <p class="card-text"><?php echo $movie['format']; ?></p>
+                                <h5 class="card-title"><?php echo $movie['titulo']; ?></h5>
+                                <p class="card
+                                -text"><?php echo $movie['sinopsis']; ?></p>
                             </div>
                         </div>
                     </div>
@@ -88,5 +120,25 @@ $user_role = $_SESSION['user_role'];
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('reservationForm').addEventListener('submit', function(event) {
+            // Obtener los valores de los campos
+            var pelicula = document.getElementsByName('nombre_pelicula')[0].value;
+            var fecha = document.getElementById('fecha').value;
+            var hora = document.getElementById('hora').value;
+
+            // Verificar si todos los campos están llenos
+            if (pelicula === '' || fecha === '' || hora === '') {
+                // Mostrar el mensaje de error
+                document.getElementById('errorMessage').style.display = 'block';
+                // Detener el envío del formulario
+                event.preventDefault();
+            } else {
+                // Ocultar el mensaje de error si todos los campos están llenos
+                document.getElementById('errorMessage').style.display = 'none';
+            }
+        });
+    </script>
 </body>
+
 </html>

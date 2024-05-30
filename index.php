@@ -60,16 +60,7 @@ require_once './config/conexion.php';
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <div class="card-body">
-                                <h5 class="card-title">Géneros</h5>
-                                <p class="card-text">Consulta y gestiona los géneros de las películas.</p>
-                                <a href="./genero/views/index.php" class="btn btn-primary">Ver Géneros</a>
-                                <a href="./genero/views/create.php" class="btn btn-secondary">Agregar Género</a>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </section>

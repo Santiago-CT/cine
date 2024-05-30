@@ -1,28 +1,23 @@
-
 <?php
 
 require '../views/templates/header.php';
 require '../Pelicula.php';
-if (isset($_POST['id'])) {
-    // Obtener el ID de la película enviado desde el formulario
-    $id = intval($_POST['id']);
-
-    // Instanciar un objeto Pelicula y obtener la información de la película con ese ID
+if (isset($_GET['id'])) {
+    $id = intval($_GET['id']);
     $pelicula = new Pelicula();
-    $pelicula->getById($id);
+    $data = $pelicula->getById($id);
 } else {
-    // Si no se envió un ID de película, mostrar un mensaje de error y salir del script
-    die("ID de película no encontrado en el formulario POST.");
+    die("ID de película no encontrado en la URL.");
 }
- ?>
+?>
 <div class="row">
     <div class="col-12">
-        <h2 class="text-center mb-4"><?php echo htmlspecialchars($pelicula['titulo']); ?></h2>
+        <h2 class="text-center mb-4"><?php echo htmlspecialchars($data['titulo']); ?></h2>
     </div>
 </div>
 <div class="row">
     <div class="col-md-4 text-center">
-        <img src="<?php echo htmlspecialchars($pelicula['poster_url']); ?>" alt="<?php echo htmlspecialchars($pelicula['titulo']); ?>" class="img-fluid mb-3">
+        <img src="<?php echo htmlspecialchars($data['poster_url']); ?>" alt="<?php echo htmlspecialchars($data['titulo']); ?>" class="img-fluid mb-3">
         <div>
             <a href="#" class="btn btn-primary btn-sm">Compartir en Facebook</a>
             <a href="#" class="btn btn-success btn-sm">Compartir en WhatsApp</a>
@@ -30,34 +25,34 @@ if (isset($_POST['id'])) {
     </div>
     <div class="col-md-8">
         <div class="embed-responsive embed-responsive-16by9 mb-4">
-            <iframe class="embed-responsive-item" src="<?php echo htmlspecialchars($pelicula['trailer_url']); ?>" allowfullscreen></iframe>
+            <iframe class="embed-responsive-item" src="<?php echo htmlspecialchars($data['trailer_url']); ?>" allowfullscreen></iframe>
         </div>
         <h5>Sinopsis:</h5>
-        <p><?php echo nl2br(htmlspecialchars($pelicula['sinopsis'])); ?></p>
+        <p><?php echo nl2br(htmlspecialchars($data['sinopsis'])); ?></p>
         <table class="table table-bordered">
             <tr>
                 <th>Restricción</th>
-                <td><?php echo htmlspecialchars($pelicula['restriccion']); ?></td>
+                <td><?php echo htmlspecialchars($data['restriccion']); ?></td>
             </tr>
             <tr>
                 <th>Género</th>
-                <td><?php echo htmlspecialchars($pelicula['genero']); ?></td>
+                <td><?php echo htmlspecialchars($data['genero']); ?></td>
             </tr>
             <tr>
                 <th>Duración</th>
-                <td><?php echo htmlspecialchars($pelicula['duracion']); ?> minutos</td>
+                <td><?php echo htmlspecialchars($data['duracion']); ?> minutos</td>
             </tr>
             <tr>
                 <th>Idioma</th>
-                <td><?php echo htmlspecialchars($pelicula['idioma']); ?></td>
+                <td><?php echo htmlspecialchars($data['idioma']); ?></td>
             </tr>
             <tr>
                 <th>Director</th>
-                <td><?php echo htmlspecialchars($pelicula['director']); ?></td>
+                <td><?php echo htmlspecialchars($data['director']); ?></td>
             </tr>
             <tr>
                 <th>Reparto</th>
-                <td><?php echo nl2br(htmlspecialchars($pelicula['reparto'])); ?></td>
+                <td><?php echo nl2br(htmlspecialchars($data['reparto'])); ?></td>
             </tr>
         </table>
     </div>
@@ -67,7 +62,7 @@ if (isset($_POST['id'])) {
     <div class="col-12">
         <h3>Compra en Línea</h3>
         <form action="procesar_reserva.php" method="post">
-            <input type="hidden" name="id" value="<?php echo htmlspecialchars($pelicula['id']); ?>">
+            <input type="hidden" name="id" value="<?php echo htmlspecialchars($data['id']); ?>">
             <div class="form-row align-items-end">
                 <div class="form-group col-md-3">
                     <label for="fecha">Fecha</label>

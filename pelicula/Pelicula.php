@@ -9,10 +9,33 @@ class Pelicula extends ConexionBD {
         global $pdo;
         $this->pdo = $pdo;
     }
-
+    public function getVistaPP() {
+        try {
+            $sql = 'SELECT * FROM vista_proyecciones_peliculas';
+            $stmt = ConexionBD::getConnection()->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+            return $result;
+        } catch (PDOException $th) {
+            echo $th->getMessage();
+        }
+    }
+    public function getFecha($nombre_pelicula) {
+        try {
+            $sql = 'SELECT fecha_proyeccion, hora_proyeccion FROM vista_proyecciones_peliculas WHERE nombre_pelicula = :nombre_pelicula';
+            $stmt = ConexionBD::getConnection()->prepare($sql);
+            $stmt->bindParam(':nombre_pelicula', $nombre_pelicula);
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+            return $result;
+        } catch (PDOException $th) {
+            echo $th->getMessage();
+        }
+    }
+    
     public function getAll() {
         try {
-            $sql = 'SELECT id,titulo,poster_url FROM peliculas';
+            $sql = 'SELECT id,titulo,poster_url,sinopsis FROM peliculas';
             $stmt = ConexionBD::getConnection()->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetchAll();

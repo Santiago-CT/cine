@@ -64,7 +64,7 @@
             <h1>Cine Multiplex</h1>
             <p>¡Somos parte de tu alegría!</p>
         </div>
-        <form action="./secciones.php" method="POST">
+        <form action="./secciones.php?action=login" method="POST">
             <div class="form-group">
                 <label for="username">Nombre de usuario *</label>
                 <input type="text" name="user"  class="form-control" placeholder="Escriba su nombre de usuario en Cine Multiplex Villacentro." required>

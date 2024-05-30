@@ -64,6 +64,7 @@
             <p>¡Somos parte de tu alegría!</p>
         </div>
         <form action="./registrar.php" method="POST">
+            
             <div class="form-group">
                 <label for="name">Nombre *</label>
                 <input type="text" name="nombre" class="form-control" placeholder="Escriba su nombre" required>

@@ -1,8 +1,19 @@
-<?php 
+
+<?php
+
 require '../views/templates/header.php';
 require '../Pelicula.php';
-$pelicula = new Pelicula();
-$peliculas = $pelicula->getAll();
+if (isset($_POST['id'])) {
+    // Obtener el ID de la película enviado desde el formulario
+    $id = intval($_POST['id']);
+
+    // Instanciar un objeto Pelicula y obtener la información de la película con ese ID
+    $pelicula = new Pelicula();
+    $pelicula->getById($id);
+} else {
+    // Si no se envió un ID de película, mostrar un mensaje de error y salir del script
+    die("ID de película no encontrado en el formulario POST.");
+}
  ?>
 <div class="row">
     <div class="col-12">
@@ -56,7 +67,7 @@ $peliculas = $pelicula->getAll();
     <div class="col-12">
         <h3>Compra en Línea</h3>
         <form action="procesar_reserva.php" method="post">
-            <input type="hidden" name="pelicula_id" value="<?php echo htmlspecialchars($pelicula['id']); ?>">
+            <input type="hidden" name="id" value="<?php echo htmlspecialchars($pelicula['id']); ?>">
             <div class="form-row align-items-end">
                 <div class="form-group col-md-3">
                     <label for="fecha">Fecha</label>
